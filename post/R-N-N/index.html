@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Gridea | SunxiaonanBlog</title>
+<title>循环神经网络-RNN | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -14,6 +14,12 @@
 <link rel="stylesheet" href="https://Sunxiaonan0672.github.io/styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
@@ -22,6 +28,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://Sunxiaonan0672.github.io">SunxiaonanBlog</a></h3>
@@ -78,42 +85,63 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="current-tag">标签: Gridea</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://Sunxiaonan0672.github.io/post/hello-gridea">Hello Gridea</a>
-    </h2>
-    <p class="article-meta">
-      2018-12-12
-      
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
-          Gridea
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+          <article class="article">
+            <h1>循环神经网络-RNN</h1>
+            <p class="article-meta">
+              2019-04-25
+              
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+                  深度学习
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p><strong>循环神经网络简介</strong>
+由于前馈神经网络的输入只依赖当前输入，难以处理时序数据，比如视频，语音，文本等。时序数据的不固定性也似的前馈神经网络无法有效的用。
+循环神经网络（RNN）是一款具有短期记忆功能的网络
+循环神经网络通过自身反馈神经元，可以处理任意长度的时序数据。</p>
+<!-- more -->
+<p>假设 在时刻t时，网络输入为x_t，给定一个序列x_1:T=（x_1，x_2，x_3，...x_T) ，循环神经网络通过公式（1）来更新带反馈边的隐藏层的活性值h_t</p>
+<pre><code>                               h_t = f(h_（t-1）,x_t)                   (1)
+</code></pre>
+<p>结构下图所示
+<img src="https://Sunxiaonan0672.github.io/post-images/1556183190436.png" alt="">
+图 1 循环神经网络</p>
+<p>假设在时刻t时，网络的输入为x_t，隐藏层状态(即隐藏层神经元活性值) 为 h_t 不仅和当前时刻的输入 x_t 相关，也和上一个时刻的隐藏层状态 h_t−1 相关。</p>
+<pre><code>			z_t =Uh_(t−1) +Wx_t +b			(2)
+			ht = f(zt)                              (3)
+</code></pre>
+<!-- more -->
 
-    </p>
-    <div class="row">
-      <a href="https://Sunxiaonan0672.github.io/post/hello-gridea" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Sunxiaonan0672.github.io/post/hello-gridea">
+                <h3 class="post-title">
+                  Hello Gridea
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
 
+          
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556183982467" class="no-responsive avatar">
@@ -164,7 +192,7 @@
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
           Gridea
         </a>
       
@@ -174,6 +202,7 @@
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
   </div>
 </div>
+
 
     </div>
 
@@ -186,6 +215,29 @@ AOS.init();
 hljs.initHighlightingOnLoad()
 
 </script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
