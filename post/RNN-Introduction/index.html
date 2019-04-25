@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>循环神经网络-RNN | SunxiaonanBlog</title>
+<title>循环神经网络-RNN之简介 | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556183982467">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556192468635">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -86,11 +86,11 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>循环神经网络-RNN</h1>
+            <h1>循环神经网络-RNN之简介</h1>
             <p class="article-meta">
               2019-04-25
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
                   深度学习
                 </a>
               
@@ -99,7 +99,7 @@
             <div class="post-content">
               <p><strong>循环神经网络简介</strong>
 由于前馈神经网络的输入只依赖当前输入，难以处理时序数据，比如视频，语音，文本等。时序数据的不固定性也似的前馈神经网络无法有效的用。
-循环神经网络（RNN）是一款具有短期记忆功能的网络
+循环神经网络（Recurrent Neural Network）是一款具有短期记忆功能的网络
 循环神经网络通过自身反馈神经元，可以处理任意长度的时序数据。</p>
 <!-- more -->
 <p>假设 在时刻t时，网络输入为x_t，给定一个序列x_1:T=（x_1，x_2，x_3，...x_T) ，循环神经网络通过公式（1）来更新带反馈边的隐藏层的活性值h_t</p>
@@ -112,7 +112,38 @@
 <pre><code>			z_t =Uh_(t−1) +Wx_t +b			(2)
 			ht = f(zt)                              (3)
 </code></pre>
-<!-- more -->
+<h4 id="循环神经网络的应用模式">循环神经网络的应用模式</h4>
+<ol>
+<li>
+<p>序列到类别模式
+序列类别模式主要应用于序列数据分类问题，输入---&gt;序列，输出---&gt;类别
+例如输入<em>文本单词序列</em>，输出<em>文本类别</em>
+网络结构如下所示
+<img src="https://Sunxiaonan0672.github.io/post-images/1556189860031.png" alt=""></p>
+<p>图 2 序列到类别模式</p>
+<p>图2 （a）将h_T 看作整个序列的最终特征并输入给分类器 g(·) 进行分类，如公式4所示</p>
+<pre><code>yˆ = g(h_T )                     （4）
+</code></pre>
+</li>
+</ol>
+<p>图2 （b）对整个序列的所有 状态进行平均，并用这个平均状态来作为整个序列的表示，公式如下图所示</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556191189374.png" alt=""></p>
+<ol start="2">
+<li>同步的序列到序列模式</li>
+</ol>
+<p>同步的序列到序列模式主要用于序列标注(Sequence Labeling)任务，即每 一时刻都有输入和输出，输入序列和输出序列的长度相同，<em>词性标注</em>就是典型的同步序列到序列模式。
+<img src="https://Sunxiaonan0672.github.io/post-images/1556191431221.png" alt=""></p>
+<p>图3 同步序列模式</p>
+<ol start="3">
+<li>异步的序列到序列模式<br>
+异步的序列到序列模式也称为编码器-解码器(Encoder-Decoder)模型，即输入序列和输出序列不需要有严格的对应关系，也不需要保持相同的长度。主要应用于“机器翻译”。输入为一个长度为 T 的序列 x_1:T = (x_1,··· ,x_T)，输出为长度为M的序列y_1:M = (y_1,··· ,y_M)。
+利用先<em>编码</em>后<em>解码</em>的模式，先将x输入到一个循环神经网络（编码器）中获得h_T，再使用另一个循环神经网络（解码器）得到输出序列y_1:M
+<img src="https://Sunxiaonan0672.github.io/post-images/1556191993257.png" alt=""></li>
+</ol>
+<p>图 4 异步序列模式</p>
+<p>其中f1(·), f2(·)分别为用作编码器和解码器的循环神经网络，g(·)为分类器，yˆt为预测输出 yˆt 的向量表示，公式如下</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556192403766.png" alt="">
+<img src="https://Sunxiaonan0672.github.io/post-images/1556192412309.png" alt=""></p>
 
             </div>
           </article>
@@ -144,7 +175,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556183982467" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556192468635" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -169,7 +200,7 @@
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/R-N-N">循环神经网络-RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
             </li>
           
         
@@ -188,7 +219,7 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
           深度学习
         </a>
       
