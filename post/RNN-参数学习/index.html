@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556245274859">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556251007205">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,14 +90,39 @@
             <p class="article-meta">
               2019-04-26
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
                   深度学习
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p>上一小结简单讲述了</p>
+              <p><strong>RNN参数学习</strong>  — 上一小结简单讲述了RNN的基本结构和应用模式。本章主要分享一下该网络的参数学习。</p>
+<!-- more -->
+<p>循环神经网络的参数可以通过梯度下降方法来进行学习。</p>
+<p>在循环神经网络中主要有两种计算梯度的方式：随时间<em>反向传播（BPTT）</em>  和 <em>实时循环学习（RTRL）</em></p>
+<p>接下来主要介绍这两种计算梯度的方式</p>
+<!-- more -->
+<h4 id="损失函数">损失函数</h4>
+<p>本文均以随机梯度下降为🌰，损失函数可以采用交叉熵。损失函数的具体详情如下</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250122937.jpeg" alt=""></p>
+<p>因此，整个序列的损失函数为</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250295330.png" alt=""></p>
+<h4 id="参数计算">参数计算</h4>
+<p>以整个序列损失函数 L 关于参数 U 的梯度为例🌰，其梯度为</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250622728.png" alt=""></p>
+<p>即每个时刻损失 Lt 对参数 U 的偏导数之和。</p>
+<h4 id="梯度计算方式">梯度计算方式</h4>
+<ol>
+<li>
+<p><strong>随时间反向传播算法（BPTT）</strong></p>
+<p>BPTT 算法将循环神经网络看作是一个展开的多层前馈网络，其中“每一 层”对应循环网络中的“每个时刻”（如下图所示）
+<img src="https://Sunxiaonan0672.github.io/post-images/1556251001069.jpg" alt=""></p>
+</li>
+<li>
+<p><strong>shi shi实时循环学习（RTRL）</strong></p>
+</li>
+</ol>
 
             </div>
           </article>
@@ -129,7 +154,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556245274859" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556251007205" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -179,11 +204,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
           Gridea
         </a>
       
