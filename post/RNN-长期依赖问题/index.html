@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>循环神经网络-RNN之参数学习 | SunxiaonanBlog</title>
+<title>循环神经网络-长期依赖问题 | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,63 +86,50 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>循环神经网络-RNN之参数学习</h1>
+            <h1>循环神经网络-长期依赖问题</h1>
             <p class="article-meta">
-              2019-04-26
+              2019-04-28
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
                   深度学习
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p><strong>RNN参数学习</strong>  — 上一小结简单讲述了RNN的基本结构和应用模式。本章主要分享一下该网络的参数学习。</p>
+              <h4 id="长期依赖问题的出现">长期依赖问题的出现</h4>
+<p>在循环神经网络（RNN）中存的一个问题便是<em>长期依赖文同</em></p>
 <!-- more -->
-<p>循环神经网络的参数可以通过梯度下降方法来进行学习。</p>
-<p>在循环神经网络中主要有两种计算梯度的方式：随时间<em>反向传播（BPTT）</em>  和 <em>实时循环学习（RTRL）</em></p>
-<p>接下来主要介绍这两种计算梯度的方式</p>
-<!-- more -->
-<h4 id="损失函数">损失函数</h4>
-<p>本文均以随机梯度下降为🌰，损失函数可以采用交叉熵。损失函数的具体详情如下</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250122937.jpeg" alt=""></p>
-<p>因此，整个序列的损失函数为</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250295330.png" alt=""></p>
-<h4 id="参数计算">参数计算</h4>
-<p>以整个序列损失函数 L 关于参数 U 的梯度为例🌰，其梯度为</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250622728.png" alt=""></p>
-<p>即每个时刻损失 Lt 对参数 U 的偏导数之和。</p>
-<h4 id="梯度计算方式">梯度计算方式</h4>
+<p>根据上一章节中介绍的BPTT算法，其中第t时刻损失函数对第k时刻隐藏层的净输入z_k的导数如下：</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439290762.png" alt=""></p>
+<p>将以上公式展开为：</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439446414.png" alt=""></p>
+<p>以上展开式，我们可以发现～</p>
+<p>梯度爆炸问题：如果γ &gt; 1，当t−k → ∞时，γ(t−k) → ∞，会造成系统不稳定,则称作梯度爆炸
+梯度消失问题：如果γ &lt; 1，当t−k → ∞时，γ(t−k) → 0， 会出现和深度前馈神经网络类似的梯度消失问题</p>
+<p>由于RNN经常实用非线性激活函数为logistic 函数以及tanh函数，其导数图示如下：</p>
 <ol>
-<li>
-<p><strong>随时间反向传播算法（BPTT）</strong></p>
-<p>BPTT 算法将循环神经网络看作是一个展开的多层前馈网络，其中“每一 层”对应循环网络中的“每个时刻”（如下图所示）
-<img src="https://Sunxiaonan0672.github.io/post-images/1556251001069.jpg" alt=""></p>
-<p>在“展开”的循环神经网络中，所有层的参数是共享的（因此参数的真实梯度是将所有“展开层”的参数梯度 之和）
-<strong>计算偏导数</strong></p>
-<p>🌰 ～ 根据RNN的损失函数，先计算第 t 时刻损失对参数 U 的偏导数 ∂L_t／∂U</p>
-<p>因为参数U 跟隐藏层每个时刻k（1&lt;= k &lt;=t）的净输入z_k = U h_k−1 + W x_k +b 有关，因此
-因此第t时刻损失的损失函数L_t关于参数U的梯度为下图
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421323127.jpeg" alt=""></p>
-<p>随时间反向传播算法示例
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421386145.png" alt=""></p>
-</li>
-<li>
-<p><strong>实时循环学习（RTRL）</strong>
-与反向传播算法不同的是，实时传播算法（Real-Time Recurrent Learning，RTRL）是通过前向传播的方式来计算梯度。
-具体操作如下图所示
-<img src="https://Sunxiaonan0672.github.io/post-images/1556430047120.jpeg" alt=""></p>
-</li>
+<li>logistic 函数（sigmoid 函数）</li>
 </ol>
-<p>参数 W 和 b 的梯度也可以同样按上述方法实时计算。</p>
-<h4 id="bptt与rtrl比较">BPTT与RTRL比较</h4>
-<p>前者通过反向模式计算梯度，后者利用前向模式计算梯度。 BPTT 算法的计算量会更小，但是 BPTT 算法需 要保存所有时刻的中间梯度，空间复杂度较高。RTRL 算法不需要梯度回传，因 此非常适合用于需要在线学习或无限序列的任务中。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440773011.png" alt=""></p>
+<p>2.tanh 函数</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440926561.jpg" alt=""></p>
+<p>从上图可以发现 sigmoid 函数的值域为（0，0.25]，tanh的值域也小于1，则如果时间间隔 t-k 过大，，δ_(t,k) 会趋向于 0，因此经常会出现梯度消失问题。</p>
+<p>因此，理论上简单的循环神经网络可以长时间间隔状态之间的依赖关系，但是由于梯度爆炸或者消失问题，实际上只能学习到短期的依赖关系。</p>
+<p>如果 t 时刻的输出 yt 依赖于 t − k 时刻的输入 x_(t−k) ，当间隔 k 比较大时，简单神经网络很难建模这种长距离的依赖关系，称为长期依赖问题(Long-Term Dependencies Problem)。</p>
+<p><strong>注意⚠️：</strong>  在循环神经网络中的梯度消失不是说 ∂L_t / ∂U 的梯度消失了， 而是∂L_t  / ∂h_k 的梯度消失了(当t−k比较大时)</p>
 <h4 id="总结">总结</h4>
-<p>这一章节总结了循环神经网络的梯度计算，奈何本人学识有限，存在错误的地方请多多指教🙏</p>
-<p>-----------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
-<h5 id="引用">引用</h5>
+<p>本章主要分享了在实际中循环神经网络中容易出现依赖问题，下一章则会介绍解决方法。</p>
+<p>如有错误，请各路大神留言指教～🙏 小编不胜感激。</p>
+<h4 id="引用">引用</h4>
 <ol>
-<li>深度学习-邱锡鹏</li>
+<li>
+<p>深度学习-邱锡鹏</p>
+</li>
+<li>
+<p>详解机器学习中的梯度消失、爆炸原因及其解决方法
+<a href=""></a>https://blog.csdn.net/qq_25737169/article/details/78847691</p>
+</li>
 </ol>
 
             </div>
@@ -154,9 +141,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">
                 <h3 class="post-title">
-                  循环神经网络-RNN之简介
+                  循环神经网络-RNN之参数学习
                 </h3>
               </a>
             </div>
@@ -231,11 +218,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
           Gridea
         </a>
       
