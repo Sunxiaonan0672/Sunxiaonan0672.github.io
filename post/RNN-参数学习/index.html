@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556421531263">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556430909715">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -128,8 +128,21 @@
 <img src="https://Sunxiaonan0672.github.io/post-images/1556421386145.png" alt=""></p>
 </li>
 <li>
-<p><strong>实时循环学习（RTRL）</strong></p>
+<p><strong>实时循环学习（RTRL）</strong>
+与反向传播算法不同的是，实时传播算法（Real-Time Recurrent Learning，RTRL）是通过前向传播的方式来计算梯度。
+具体操作如下图所示
+<img src="https://Sunxiaonan0672.github.io/post-images/1556430047120.jpeg" alt=""></p>
 </li>
+</ol>
+<p>参数 W 和 b 的梯度也可以同样按上述方法实时计算。</p>
+<h4 id="bptt与rtrl比较">BPTT与RTRL比较</h4>
+<p>前者通过反向模式计算梯度，后者利用前向模式计算梯度。 BPTT 算法的计算量会更小，但是 BPTT 算法需 要保存所有时刻的中间梯度，空间复杂度较高。RTRL 算法不需要梯度回传，因 此非常适合用于需要在线学习或无限序列的任务中。</p>
+<h4 id="总结">总结</h4>
+<p>这一章节总结了循环神经网络的梯度计算，奈何本人学识有限，存在错误的地方请多多指教🙏</p>
+<p>-----------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
+<h5 id="引用">引用</h5>
+<ol>
+<li>深度学习-邱锡鹏</li>
 </ol>
 
             </div>
@@ -162,7 +175,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556421531263" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556430909715" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -212,11 +225,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
           Gridea
         </a>
       
