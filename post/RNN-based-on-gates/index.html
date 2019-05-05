@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>循环神经网络-RNN之参数学习 | SunxiaonanBlog</title>
+<title>基于门控的RNN | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,63 +86,75 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>循环神经网络-RNN之参数学习</h1>
+            <h1>基于门控的RNN</h1>
             <p class="article-meta">
-              2019-04-26
+              2019-05-05
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
                   深度学习
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p><strong>RNN参数学习</strong>  — 上一小结简单讲述了RNN的基本结构和应用模式。本章主要分享一下该网络的参数学习。</p>
+              <p>为了解决上一章节提到的<em>记忆容量</em>问题，<em>门控</em>被引入来控制信息的积累的速度，即包括有选择的加入新的信息，并且有选择的遗忘之前累计的信息。这一网络被称为<strong>基于门控的循环神经网络(Gated RNN )</strong></p>
+<p>本章主要分享两种基于门控的循环神经网络：<em>长短期记忆网络(LSTM)</em>  和<em>门控循环单元(GRU)</em></p>
 <!-- more -->
-<p>循环神经网络的参数可以通过梯度下降方法来进行学习。</p>
-<p>在循环神经网络中主要有两种计算梯度的方式：随时间<em>反向传播（BPTT）</em>  和 <em>实时循环学习（RTRL）</em></p>
-<p>接下来主要介绍这两种计算梯度的方式</p>
-<!-- more -->
-<h4 id="损失函数">损失函数</h4>
-<p>本文均以随机梯度下降为🌰，损失函数可以采用交叉熵。损失函数的具体详情如下</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250122937.jpeg" alt=""></p>
-<p>因此，整个序列的损失函数为</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250295330.png" alt=""></p>
-<h4 id="参数计算">参数计算</h4>
-<p>以整个序列损失函数 L 关于参数 U 的梯度为例🌰，其梯度为</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556250622728.png" alt=""></p>
-<p>即每个时刻损失 Lt 对参数 U 的偏导数之和。</p>
-<h4 id="梯度计算方式">梯度计算方式</h4>
+<h2 id="1-lstm">1.  LSTM</h2>
+<p>1 . LSTM  简介</p>
+<p>LSTM 是循环神经网络的一个变体，可以有效的解决简单的梯度消失或消失问题。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557049727798.png" alt=""></p>
+<p>公式(1)                                  h_t = h_(t−1) + g(x_t, h_(t−1); θ)</p>
+<p>在公式(1)的基础上，LSTM 网络主要更改的为：</p>
+<p><strong>1. 新的内部状态(internal states)</strong> c_t专门进行线性的循环信息传递，同时(非线性)输出信息给隐藏层的外部状态h_t。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557043623136.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557044000039.png" alt=""></p>
+<p>其中 f_t，i_t 和 o_t 为三个门(gate)来控制信息传递的路径;⊙ 为向量元素乘积; c_(t−1) 为上一时刻的记忆单元;c ̃t是通过非线性函数得到候选状态。</p>
+<p>在每个时刻 t，LSTM 网络的内部状态 c_t 记录了到当前时刻为止的历史信息。</p>
+<p><strong>2. 机制门</strong>
+LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门”是一种“软门”，取值{0,1}之间，表示一定比例运行信息进入。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557045809930.png" alt=""></p>
+<p>其中 σ(·) 为 logistic 函数，其输出区间为 (0, 1)，x_t 为当前时刻的输入，h_(t−1) 为 上一时刻的外部状态</p>
+<p>其中</p>
 <ol>
 <li>
-<p><strong>随时间反向传播算法（BPTT）</strong></p>
-<p>BPTT 算法将循环神经网络看作是一个展开的多层前馈网络，其中“每一 层”对应循环网络中的“每个时刻”（如下图所示）
-<img src="https://Sunxiaonan0672.github.io/post-images/1556251001069.jpg" alt=""></p>
-<p>在“展开”的循环神经网络中，所有层的参数是共享的（因此参数的真实梯度是将所有“展开层”的参数梯度 之和）
-<strong>计算偏导数</strong></p>
-<p>🌰 ～ 根据RNN的损失函数，先计算第 t 时刻损失对参数 U 的偏导数 ∂L_t／∂U</p>
-<p>因为参数U 跟隐藏层每个时刻k（1&lt;= k &lt;=t）的净输入z_k = U h_k−1 + W x_k +b 有关，因此
-因此第t时刻损失的损失函数L_t关于参数U的梯度为下图
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421323127.jpeg" alt=""></p>
-<p>随时间反向传播算法示例
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421386145.png" alt=""></p>
+<p>遗忘门f_t控制上一个时刻的内部状态c_(t−1)需要遗忘多少信息</p>
 </li>
 <li>
-<p><strong>实时循环学习（RTRL）</strong>
-与反向传播算法不同的是，实时传播算法（Real-Time Recurrent Learning，RTRL）是通过前向传播的方式来计算梯度。
-具体操作如下图所示
-<img src="https://Sunxiaonan0672.github.io/post-images/1556430047120.jpeg" alt=""></p>
+<p>输入门i_t控制当前时刻的候选状态c ̃t有多少信息需要保存</p>
+</li>
+<li>
+<p>输出门o_t控制当前时刻的内部状态c_t有多少信息需要输出给外部状态h_t</p>
 </li>
 </ol>
-<p>参数 W 和 b 的梯度也可以同样按上述方法实时计算。</p>
-<h4 id="bptt与rtrl比较">BPTT与RTRL比较</h4>
-<p>前者通过反向模式计算梯度，后者利用前向模式计算梯度。 BPTT 算法的计算量会更小，但是 BPTT 算法需 要保存所有时刻的中间梯度，空间复杂度较高。RTRL 算法不需要梯度回传，因 此非常适合用于需要在线学习或无限序列的任务中。</p>
-<h4 id="总结">总结</h4>
-<p>这一章节总结了循环神经网络的梯度计算，奈何本人学识有限，存在错误的地方请多多指教🙏</p>
-<p>-----------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
+<p><strong>LSTM 计算过程</strong></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557046704003.png" alt=""></p>
+<p>LSTM循环单元结构</p>
+<p>由上图所示</p>
+<ol>
+<li>
+<p>首先利用上一时刻的外部状态h_(t-1)和当前时刻的输入x_t，计算三个门，以及候选状态c ̃t。</p>
+</li>
+<li>
+<p>结合遗忘门f_t 和输入门 i_t 来更新记忆单元 c_t</p>
+</li>
+<li>
+<p>结合输出门o_t，将 内部状态的信息传递给外部状态h_t。</p>
+</li>
+</ol>
+<p><strong>记忆</strong></p>
+<p>循环神经网络中的隐状态h存储了历史信息，可以看作是一种记忆(memory)。</p>
+<p>在简单循环网络中，隐状态每个时刻都会被重写，因此可以看作是一种<em>短期记忆(short-term memory)</em>，在神经网络中，*长期记忆(long-term memory)*可以看作是网络参数，隐含了从训练数据中学到的经验，并更新周期要远远慢 于短期记忆。</p>
+<p>在LSTM 网络中，记忆单元c 可以在某个时刻捕捉到某个关键性信息，并有能力将该信息保存一定的时间间隔。记忆单元c中保存信息的生命周期要长于短期记忆h，但又远远短于长期记忆，因此成为<strong>长的短期记忆(long short-term memory)</strong>。</p>
+<h5 id="总结">总结</h5>
+<p>本文分享了LSTM的基本结构，关于LSTM 的参数计算，会在以后章节中分享😊</p>
+<p>--------------------------------------------------&gt;来自一只💪工作，心存理想的IT🦐的分享</p>
 <h5 id="引用">引用</h5>
 <ol>
-<li>深度学习-邱锡鹏</li>
+<li>
+<p>深度学习-邱锡鹏</p>
+<p>2 <a href="https://blog.csdn.net/u010900574/article/details/51823962">.理解长短期记忆(LSTM) 神经网络</a></p>
+</li>
 </ol>
 
             </div>
@@ -154,9 +166,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">
+              <a href="https://Sunxiaonan0672.github.io/post/Methods">
                 <h3 class="post-title">
-                  循环神经网络-RNN之简介
+                  解决方法-梯度爆炸或梯度消失
                 </h3>
               </a>
             </div>
@@ -247,7 +259,7 @@
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge warning">
           Gridea
         </a>
       
