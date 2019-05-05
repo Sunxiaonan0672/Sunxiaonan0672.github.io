@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>循环神经网络-长期依赖问题 | SunxiaonanBlog</title>
+<title>解决方法-梯度爆炸或梯度消失 | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1556442824985">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557034407357">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -86,51 +86,20 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>循环神经网络-长期依赖问题</h1>
+            <h1>解决方法-梯度爆炸或梯度消失</h1>
             <p class="article-meta">
-              2019-04-28
-              
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
-                  深度学习
-                </a>
+              2019-05-05
               
             </p>
             
             <div class="post-content">
-              <h4 id="长期依赖问题的出现">长期依赖问题的出现</h4>
-<p>在循环神经网络（RNN）中存的一个问题便是<em>长期依赖文同</em></p>
+              <p>为了避免梯度爆炸或者消失问题，最直接的方式就是选取合适的参数，同时使用非饱和的激活函数，尽量使得diag(f′(z_i)U_T ≈ 1，这种方式需要足够的 人工调参经验，限制了模型的广泛应用。</p>
+<p>因此通过改进模型或者优化方法来缓解网络梯度爆炸或者消失</p>
 <!-- more -->
-<p>根据上一章节中介绍的BPTT算法，其中第t时刻损失函数对第k时刻隐藏层的净输入z_k的导数如下：</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439290762.png" alt=""></p>
-<p>将以上公式展开为：</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439446414.png" alt=""></p>
-<p>以上展开式，我们可以发现～</p>
-<p>梯度爆炸问题：如果γ &gt; 1，当t−k → ∞时，γ(t−k) → ∞，会造成系统不稳定,则称作梯度爆炸
-梯度消失问题：如果γ &lt; 1，当t−k → ∞时，γ(t−k) → 0， 会出现和深度前馈神经网络类似的梯度消失问题</p>
-<p>由于RNN经常实用非线性激活函数为logistic 函数以及tanh函数，其导数图示如下：</p>
-<ol>
-<li>logistic 函数（sigmoid 函数）</li>
-</ol>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440773011.png" alt=""></p>
-<p>2.tanh 函数</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440926561.jpg" alt=""></p>
-<p>从上图可以发现 sigmoid 函数的值域为（0，0.25]，tanh的值域也小于1，则如果时间间隔 t-k 过大，，δ_(t,k) 会趋向于 0，因此经常会出现梯度消失问题。</p>
-<p>因此，理论上简单的循环神经网络可以长时间间隔状态之间的依赖关系，但是由于梯度爆炸或者消失问题，实际上只能学习到短期的依赖关系。</p>
-<p>如果 t 时刻的输出 yt 依赖于 t − k 时刻的输入 x_(t−k) ，当间隔 k 比较大时，简单神经网络很难建模这种长距离的依赖关系，称为长期依赖问题(Long-Term Dependencies Problem)。</p>
-<p><strong>注意⚠️：</strong>  在循环神经网络中的梯度消失不是说 ∂L_t / ∂U 的梯度消失了， 而是∂L_t  / ∂h_k 的梯度消失了(当t−k比较大时)</p>
-<h4 id="总结">总结</h4>
-<p>本章主要分享了在实际中循环神经网络中容易出现依赖问题，下一章则会介绍解决方法。</p>
-<p>如有错误，请各路大神留言指教～🙏 🦐不胜感激。</p>
-<p>--------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
-<h4 id="引用">引用</h4>
-<ol>
-<li>
-<p>深度学习-邱锡鹏</p>
-</li>
-<li>
-<p>详解机器学习中的梯度消失、爆炸原因及其解决方法 <a href="https://blog.csdn.net/qq_25737169/article/details/78847691"></a></p>
-</li>
-</ol>
+<p><strong>1. 梯度爆炸：</strong></p>
+<ul>
+<li>梯度爆炸* 通过权重衰减</li>
+</ul>
 
             </div>
           </article>
@@ -141,9 +110,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">
+              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">
                 <h3 class="post-title">
-                  循环神经网络-RNN之参数学习
+                  长期依赖问题
                 </h3>
               </a>
             </div>
@@ -162,7 +131,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1556442824985" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557034407357" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -187,7 +156,13 @@
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-长期依赖问题">循环神经网络-长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
             </li>
           
         
@@ -218,7 +193,7 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
           深度学习
         </a>
       
