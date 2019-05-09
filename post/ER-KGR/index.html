@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Explainable Reasoning over Knowledge Graphs for Recommendation | SunxiaonanBlog</title>
+<meta name="description" content="经验是智慧之父，记忆是智慧之母">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557372955207">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://Sunxiaonan0672.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://Sunxiaonan0672.github.io">SunxiaonanBlog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Explainable Reasoning over Knowledge Graphs for Recommendation</h1>
+            <p class="article-meta">
+              2019-05-07
+              
+                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+                  paper
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h4 id="explainable-reasoning-over-knowledge-graphs-for-recommendation">Explainable Reasoning over Knowledge Graphs for Recommendation</h4>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557218821493.png" alt=""></p>
+<p><strong>背景介绍</strong></p>
+<p>前期工作表明了融入辅助信息至推荐系统中的重要性，因此近年来整合知识图谱到推进系统中受到高度关注，通过探索知识图中的链接，可以发现用户和项目之间的连接作为路径，为用户项目交互提供丰富和充分的信息。然而这种连接不仅揭示了实体与关系的语义，而且有助于推断出用户的兴趣。然而，现有的工作还没有充分探索这种连接来推断用户偏好，特别是在对路径内部的顺序依赖性和整体语义进行建模方面。</p>
+<p><strong>本文目的</strong></p>
+<p>本文设计了一个新的模型，Knowledge- aware Path Recurrent Network (KPRN) ，即利用知识图谱进行推荐。KPRN可以通过组成实体和关系的语义来生成路径表示。通过利用路径中的顺序依赖性，追寻这路径进行有效推理，以推断用户-商品交互的基本原理。</p>
+<p><strong>本文模型优势</strong></p>
+<p>本文模型加入了一个新的权重池化操作来区分不同路径“用户-商品”的优势，使模型具有一定的可解释性。</p>
+<!-- more -->
+<h4 id="1-introduction"><strong>1. Introduction</strong></h4>
+<p>前期实验表明整合辅助数据（user profiles &amp; item attributes）到推荐系统中，有利于提高推荐系统的准确性。由于知识图谱包含了广泛的辅助数据，比如商品项目的背景知识和它们之间的关系等，因此受到了高度关注。知识图谱items之间的关系表示为(Ed Sheeran, IsSingerOf, Shape of You)</p>
+<p>Extra user-item connectivity information derived from KG endows recommender systems the ability of reasoning and explainability。Taking music recommendation as an example (Figure 1), a user is connected to I See Fire since she likes Shape of You sung by the same singer Ed Sheeran。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557294044985.png" alt=""></p>
+<p><strong>Running Example:</strong> (Alice, Interact, Shape of You)^(Shape of You, SungBy, Ed Sheeran)^(Ed Sheeran, IsSingerOf, I See Fire) =&gt; (Alice, Interact, I See Fire).</p>
+<p><strong>Prior efforts</strong></p>
+<p>Prior efforts on knowledge-aware recommendation are roughly categorized into <em>path and embedding fashion</em></p>
+<ol>
+<li>
+<p>Path- based methods introduce meta-paths to refine the similarities between users and items，然而该方法不考虑用户-商品之间的关系，因此当元路径中出现相同的实体但不同关系时，很难确定路径的整体语义。</p>
+</li>
+<li>
+<p>Knowledge graph embedding (KGE) techniques  ，利用该技术将items 进行规范表达，因此，items具有相似连接实体具有相似表达方式。尽管提高了用户意图推荐，但是缺乏推理能力。 Specially, it only considers direct relations between entities, rather than the multi-hop relation paths as the** Running Example shows.**</p>
+</li>
+<li>
+<p>本文提出了Knowledge-aware Path Recurrent Network (KPRN)，which not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference.</p>
+</li>
+</ol>
+<h4 id="流程简介与任务定义"><strong>流程简介与任务定义</strong></h4>
+<p>KPRN not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference。</p>
+<p><strong>流程：</strong></p>
+<p>1.extract qualified paths between a user-item pair from the KG, each of which consists of the related entities and relation</p>
+<ol start="2">
+<li>
+<p>then adopt a Long Short-Term Memory (LSTM) network to model the sequential dependencies of entities and relations.</p>
+</li>
+<li>
+<p>a pooling operation is performed to aggregate the representations of paths to obtain prediction signal for the user-item pair.</p>
+</li>
+</ol>
+<p><strong>knowledge Graph (KG)</strong></p>
+<p>nodes are entities E and edges R denote their relations.
+<img src="https://Sunxiaonan0672.github.io/post-images/1557298568504.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557298629379.png" alt=""></p>
+<p><strong>Preference Inference via Paths</strong></p>
+<p>知识图谱中的三元组清晰的描述了items 之间的直接或者间接（多步）的关系特性，即组成了users与items之间的一条或多条路径。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299248167.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299305569.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299355135.png" alt=""></p>
+<p><strong>Task Definition</strong></p>
+<p>given a user u, a target item i, and a set of paths P(u,i) = {p_1, p_2, · · · , p_K } connecting u and i, the holistic goal is to estimate the interaction by:</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></p>
+<h4 id="modeling"><strong>Modeling</strong></h4>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299932203.png" alt=""></p>
+<p>**输入：**a set of paths of each user-item pair</p>
+<ol>
+<li>
+<p>embedding layer to project three types of IDs information</p>
+</li>
+<li>
+<p>LSTM layer 按顺序对元素进行编码，以捕获基于关系的实体的组合语义</p>
+</li>
+<li>
+<p>pooling 层 用于组合多条路径并输出最终得分of the given user interacting the target item</p>
+</li>
+</ol>
+<p>**embedding layer **</p>
+<p>给出一个路径p_k， the type (e.g., person or movie) and specific value (e.g., Peter Jackson or The Hobbit II) of each entity into two separate embedding vectors
+<img src="https://Sunxiaonan0672.github.io/post-images/1557303185969.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303251185.png" alt=""></p>
+<p><strong>LSTM layer</strong></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303425258.png" alt=""></p>
+<p>h_(l-1) and x_(l-1) 被用来计算下一个 path-step l</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303534321.png" alt=""></p>
+<p>Taking advantages of the memory state, the last state hL is capable of representing the whole path pk.
+通过建立p_k表达，我们目的预测 t = (u,interact,i) 的合理性。
+Towards this end, two fully-connected layers are adopted to project the final state into the predictive score for output, given by：
+<img src="https://Sunxiaonan0672.github.io/post-images/1557304008775.png" alt=""></p>
+<p><strong>pooling 层</strong></p>
+<p>S = {s1,s2,···,sK} be the predictive scores for K paths, P(u, i) = {p_1, p_2, · · · , p_K }, connecting a user-item pair (u,i), where each element is calculated based on Equation (4). 最终的预测 the average of the scores of all paths, which is formulated as</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557304578195.png" alt=""></p>
+<p>然而 由于不同路径对模型具有不同的贡献，while Equation (5) fails to specify importance of each path。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557304821664.png" alt=""></p>
+<h4 id="learning"><strong>Learning</strong></h4>
+<p>我们可以把推荐问题看作二分类问题， observed user- item interaction is assigned a target value 1, otherwise 0
+采用negative log-likelihood 做为 objective function</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557305614281.png" alt=""></p>
+<p>并且conduct L2 regularization on the trainable parameters , 从而以防过拟合。</p>
+<h4 id="experiments"><strong>Experiments</strong></h4>
+<p><strong>Dataset Description</strong></p>
+<p>应用于movie recommendation and music recommendation</p>
+<p>其中，电影领域数据为 MovieLens-1M1 and IMDb2 datasets，named MI
+MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有关电影的辅助信息，such as genre, actor, director, and writer等。</p>
+<p>关于音乐领域，采用的数据来源KKBox，其中不仅包含了user-item interaction data，还包含了音乐的描述，如singer, songwriter, and genre 等。</p>
+<p>如果user 评价movie，便设置user-movie pair 为positive with the target value of 1, and 0 otherwise。</p>
+<p>user-songs 同理。</p>
+<p>在训练过程中，For each positive user-item interaction pair in the training set, we conducted the negative sampling strategy to pair it with four negative items that the user has not interacted with.</p>
+<p>在测试过程中，the ratio between positive and negative interactions is set as 1 : 100, namely, 100 negative items are randomly sampled and pair with one positive item in the testing set.</p>
+<p><strong>Path Extraction</strong></p>
+<p>we extract all qualified paths, each with length up to six, that connect all user-item pairs.</p>
+<p><strong>Experimental Settings</strong></p>
+<p><strong>1. Evaluation Metrics</strong></p>
+<ol>
+<li>
+<p><strong>hit@K</strong> considers whether the relevant items are retrieved within the top K positions of the recommendation list.</p>
+</li>
+<li>
+<p><strong>ndcg@K</strong> measures the relative orders among positive and negative items within the top K of the ranking list.</p>
+</li>
+</ol>
+<p>We report the average metrics at K = {1,2,··· ,15} of all instances in the test set.</p>
+<p><strong>2. Baselines</strong></p>
+<p>**MF **   基于贝叶斯个性化排序（BPR）损失的矩阵分解方法，单独利用user-item</p>
+<p><strong>NFM</strong> 该方法是一种以历史items 作为用户特征的最先进的因子分解模型</p>
+<p><strong>CKE</strong>  embedding-based method，  which integrates the representations from Matrix Factorization  and TransR to enhance the recommendation</p>
+<p><strong>FMG</strong>   This is a state-of-the-art meta-path based method，which predefines various types of meta-graphs and employs Matrix Factorization on each meta-graph similarity matrix to make recommendation</p>
+<p><strong>3. Performance Comparison</strong></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557369721211.png" alt="">****</p>
+<p><strong>4. Study of KPRN</strong></p>
+<p>本实验研究 路径中的关系和weighted pooling operation 对模型性能的影响</p>
+<ol>
+<li>Effects of Relation Modeling （without the relation modeling, termed as KPRN-r）</li>
+</ol>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557370001845.png" alt=""></p>
+<p>2.Effects of Weighted Pooling （set the value   as {0.01,0.1,1,10}）</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557370149486.png" alt=""></p>
+<p><strong>When   decrease from 1 to 0.1, the weighted pooling operation degrades the performance, since it is similar to max-pooling and selects only the most important paths as the user-item connectivity.</strong></p>
+<p><strong>The performance w.r.t. hit@K and ndcg@K becomes poorer, when increasing   from 1 to 10. It makes sense since it tends to aggregate contributions from more paths, rather than the most informative ones</strong></p>
+<p><strong>5. Case Studies</strong>
+随机选择一名用户（ID 为 u4825），从她的相互记录中选择<em>Shakespeare in Love</em></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557371826564.png" alt=""></p>
+<h4 id="总结">总结</h4>
+<p>本文主要介绍基于知识图谱中信息做推荐，主要应用于电影和音乐领域。是否可以应用到疾病-💊成分推荐？？？</p>
+<p>----------------------------------------&gt; 来自一只奋力登高望远的IT🦐</p>
+<p>####引用</p>
+<ol>
+<li>
+<p><a href="https://arxiv.org/pdf/1811.04540.pdf">Explainable Reasoning over Knowledge Graphs for Recommendation</a>.AAAI 2019</p>
+</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/51000072">基于知识图谱路径推理的可解释推荐</a></p>
+</li>
+</ol>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">
+                <h3 class="post-title">
+                  基于门控的RNN
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557372955207" class="no-responsive avatar">
+    <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/ER-KGR">Explainable Reasoning over Knowledge Graphs for Recommendation</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/hello-gridea">Hello Gridea</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+          深度学习
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '8eff303ed9bcf9f4ab84',
+        clientSecret: 'f7db90d0f1726df30e9d7a67e8c9d39af5c2f9bc',
+        repo: 'Sunxiaonan0672.github.io',
+        owner: 'Sunxiaonan0672',
+        admin: ['Sunxiaonan0672'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
