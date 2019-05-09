@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Explainable Reasoning over Knowledge Graphs for Recommendation | SunxiaonanBlog</title>
+<title>Recommendation | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557372955207">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557373362569">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -86,11 +86,11 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Explainable Reasoning over Knowledge Graphs for Recommendation</h1>
+            <h1>Recommendation</h1>
             <p class="article-meta">
               2019-05-07
               
-                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
                   paper
                 </a>
               
@@ -124,7 +124,7 @@
 <p>本文提出了Knowledge-aware Path Recurrent Network (KPRN)，which not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference.</p>
 </li>
 </ol>
-<h4 id="流程简介与任务定义"><strong>流程简介与任务定义</strong></h4>
+<h4 id="2-流程简介与任务定义"><strong>2. 流程简介与任务定义</strong></h4>
 <p>KPRN not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference。</p>
 <p><strong>流程：</strong></p>
 <p>1.extract qualified paths between a user-item pair from the KG, each of which consists of the related entities and relation</p>
@@ -148,7 +148,7 @@
 <p><strong>Task Definition</strong></p>
 <p>given a user u, a target item i, and a set of paths P(u,i) = {p_1, p_2, · · · , p_K } connecting u and i, the holistic goal is to estimate the interaction by:</p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></p>
-<h4 id="modeling"><strong>Modeling</strong></h4>
+<h4 id="3-modeling">**3. Modeling **</h4>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557299932203.png" alt=""></p>
 <p>**输入：**a set of paths of each user-item pair</p>
 <ol>
@@ -184,7 +184,7 @@ Towards this end, two fully-connected layers are adopted to project the final st
 采用negative log-likelihood 做为 objective function</p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557305614281.png" alt=""></p>
 <p>并且conduct L2 regularization on the trainable parameters , 从而以防过拟合。</p>
-<h4 id="experiments"><strong>Experiments</strong></h4>
+<h4 id="4-experiments"><strong>4. Experiments</strong></h4>
 <p><strong>Dataset Description</strong></p>
 <p>应用于movie recommendation and music recommendation</p>
 <p>其中，电影领域数据为 MovieLens-1M1 and IMDb2 datasets，named MI
@@ -197,7 +197,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 <p><strong>Path Extraction</strong></p>
 <p>we extract all qualified paths, each with length up to six, that connect all user-item pairs.</p>
 <p><strong>Experimental Settings</strong></p>
-<p><strong>1. Evaluation Metrics</strong></p>
+<p><em>1. Evaluation Metrics</em></p>
 <ol>
 <li>
 <p><strong>hit@K</strong> considers whether the relevant items are retrieved within the top K positions of the recommendation list.</p>
@@ -207,14 +207,15 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 </li>
 </ol>
 <p>We report the average metrics at K = {1,2,··· ,15} of all instances in the test set.</p>
-<p><strong>2. Baselines</strong></p>
+<p><em>2. Baselines</em></p>
 <p>**MF **   基于贝叶斯个性化排序（BPR）损失的矩阵分解方法，单独利用user-item</p>
 <p><strong>NFM</strong> 该方法是一种以历史items 作为用户特征的最先进的因子分解模型</p>
 <p><strong>CKE</strong>  embedding-based method，  which integrates the representations from Matrix Factorization  and TransR to enhance the recommendation</p>
 <p><strong>FMG</strong>   This is a state-of-the-art meta-path based method，which predefines various types of meta-graphs and employs Matrix Factorization on each meta-graph similarity matrix to make recommendation</p>
-<p><strong>3. Performance Comparison</strong></p>
+<p><em>3 实验对比</em></p>
+<p><strong>3.1 Performance Comparison</strong></p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557369721211.png" alt="">****</p>
-<p><strong>4. Study of KPRN</strong></p>
+<p><strong>3.2. Study of KPRN</strong></p>
 <p>本实验研究 路径中的关系和weighted pooling operation 对模型性能的影响</p>
 <ol>
 <li>Effects of Relation Modeling （without the relation modeling, termed as KPRN-r）</li>
@@ -224,13 +225,13 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557370149486.png" alt=""></p>
 <p><strong>When   decrease from 1 to 0.1, the weighted pooling operation degrades the performance, since it is similar to max-pooling and selects only the most important paths as the user-item connectivity.</strong></p>
 <p><strong>The performance w.r.t. hit@K and ndcg@K becomes poorer, when increasing   from 1 to 10. It makes sense since it tends to aggregate contributions from more paths, rather than the most informative ones</strong></p>
-<p><strong>5. Case Studies</strong>
+<p><strong>3.3. Case Studies</strong>
 随机选择一名用户（ID 为 u4825），从她的相互记录中选择<em>Shakespeare in Love</em></p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557371826564.png" alt=""></p>
 <h4 id="总结">总结</h4>
 <p>本文主要介绍基于知识图谱中信息做推荐，主要应用于电影和音乐领域。是否可以应用到疾病-💊成分推荐？？？</p>
 <p>----------------------------------------&gt; 来自一只奋力登高望远的IT🦐</p>
-<p>####引用</p>
+<h4 id="引用">引用</h4>
 <ol>
 <li>
 <p><a href="https://arxiv.org/pdf/1811.04540.pdf">Explainable Reasoning over Knowledge Graphs for Recommendation</a>.AAAI 2019</p>
@@ -270,7 +271,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557372955207" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557373362569" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -295,7 +296,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/ER-KGR">Explainable Reasoning over Knowledge Graphs for Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
             </li>
           
         
@@ -344,15 +345,15 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
           Gridea
         </a>
       
