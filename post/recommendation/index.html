@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557373362569">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1557455996823">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-05-07
               
-                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
                   paper
                 </a>
               
@@ -100,9 +100,9 @@
               <h4 id="explainable-reasoning-over-knowledge-graphs-for-recommendation">Explainable Reasoning over Knowledge Graphs for Recommendation</h4>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557218821493.png" alt=""></p>
 <p><strong>背景介绍</strong></p>
-<p>前期工作表明了融入辅助信息至推荐系统中的重要性，因此近年来整合知识图谱到推进系统中受到高度关注，通过探索知识图中的链接，可以发现用户和项目之间的连接作为路径，为用户项目交互提供丰富和充分的信息。然而这种连接不仅揭示了实体与关系的语义，而且有助于推断出用户的兴趣。然而，现有的工作还没有充分探索这种连接来推断用户偏好，特别是在对路径内部的顺序依赖性和整体语义进行建模方面。</p>
+<p>近年来整合知识图谱到推进系统中受到高度关注，通过探索知识图中的链接，可以发现用户和项目之间的连接作为路径，为用户项目交互提供丰富和充分的信息。然而这种连接不仅揭示了实体与关系的语义，而且有助于推断出用户的兴趣。但是，现有的工作还没有充分探索这种连接来推断用户偏好，特别是在对路径内部的顺序依赖性和整体语义进行建模方面。</p>
 <p><strong>本文目的</strong></p>
-<p>本文设计了一个新的模型，Knowledge- aware Path Recurrent Network (KPRN) ，即利用知识图谱进行推荐。KPRN可以通过组成实体和关系的语义来生成路径表示。通过利用路径中的顺序依赖性，追寻这路径进行有效推理，以推断用户-商品交互的基本原理。</p>
+<p>本文设计了一个新的模型，Knowledge- aware Path Recurrent Network (KPRN) ，建模用户-物品对在知识图谱中存在的关联路径，为用户提供可解释的推荐。通过知识图谱，用户-物品间的交互可以通过知识图谱找到的关联路径作解释。这类关联路径不仅表述了知识图谱中实体和关系的语义，还能够帮助我们理解用户的兴趣偏好，赋予推荐系统推理能力和可解释性。</p>
 <p><strong>本文模型优势</strong></p>
 <p>本文模型加入了一个新的权重池化操作来区分不同路径“用户-商品”的优势，使模型具有一定的可解释性。</p>
 <!-- more -->
@@ -111,7 +111,7 @@
 <p>Extra user-item connectivity information derived from KG endows recommender systems the ability of reasoning and explainability。Taking music recommendation as an example (Figure 1), a user is connected to I See Fire since she likes Shape of You sung by the same singer Ed Sheeran。</p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557294044985.png" alt=""></p>
 <p><strong>Running Example:</strong> (Alice, Interact, Shape of You)^(Shape of You, SungBy, Ed Sheeran)^(Ed Sheeran, IsSingerOf, I See Fire) =&gt; (Alice, Interact, I See Fire).</p>
-<p><strong>Prior efforts</strong></p>
+<p><strong>前期难点与本文创新</strong></p>
 <p>Prior efforts on knowledge-aware recommendation are roughly categorized into <em>path and embedding fashion</em></p>
 <ol>
 <li>
@@ -121,11 +121,23 @@
 <p>Knowledge graph embedding (KGE) techniques  ，利用该技术将items 进行规范表达，因此，items具有相似连接实体具有相似表达方式。尽管提高了用户意图推荐，但是缺乏推理能力。 Specially, it only considers direct relations between entities, rather than the multi-hop relation paths as the** Running Example shows.**</p>
 </li>
 <li>
-<p>本文提出了Knowledge-aware Path Recurrent Network (KPRN)，which not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference.</p>
+<p>本文方法通过知识图谱构建用户-物品对间的关联，为用户行为提供了解释。KPRN模型通过LSTM学习关联路径的表示，考虑了实体、关系间产生的序列依赖性，具备一定的推理能力。</p>
 </li>
 </ol>
-<h4 id="2-流程简介与任务定义"><strong>2. 流程简介与任务定义</strong></h4>
+<h4 id="2-本文任务定义"><strong>2. 本文任务定义</strong></h4>
 <p>KPRN not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference。</p>
+<p><strong>knowledge Graph (KG)</strong></p>
+<p>nodes are entities E and edges R denote their relations.
+<img src="https://Sunxiaonan0672.github.io/post-images/1557298568504.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557298629379.png" alt=""></p>
+<p>知识图谱中的三元组清晰的描述了items 之间的直接或者间接（多步）的关系特性，即组成了users与items之间的一条或多条路径。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299248167.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299305569.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299355135.png" alt=""></p>
+<p><strong>Task Definition</strong></p>
+<p>给定用户u和目标物品i，以及 (u,i) 对间的知识图谱路径集合 P(u,i)={P_1, …, P_k} ，对用户u与物品i发生交互的可能性做估计（CTR）。 Y_{u,i} = f_theta(u,i|P(u,i)) 。最终根据 Y_{u,i} 排序做Top-N推荐。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></p>
+<h4 id="3-modeling">**3. Modeling **</h4>
 <p><strong>流程：</strong></p>
 <p>1.extract qualified paths between a user-item pair from the KG, each of which consists of the related entities and relation</p>
 <ol start="2">
@@ -136,19 +148,6 @@
 <p>a pooling operation is performed to aggregate the representations of paths to obtain prediction signal for the user-item pair.</p>
 </li>
 </ol>
-<p><strong>knowledge Graph (KG)</strong></p>
-<p>nodes are entities E and edges R denote their relations.
-<img src="https://Sunxiaonan0672.github.io/post-images/1557298568504.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557298629379.png" alt=""></p>
-<p><strong>Preference Inference via Paths</strong></p>
-<p>知识图谱中的三元组清晰的描述了items 之间的直接或者间接（多步）的关系特性，即组成了users与items之间的一条或多条路径。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299248167.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299305569.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299355135.png" alt=""></p>
-<p><strong>Task Definition</strong></p>
-<p>given a user u, a target item i, and a set of paths P(u,i) = {p_1, p_2, · · · , p_K } connecting u and i, the holistic goal is to estimate the interaction by:</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></p>
-<h4 id="3-modeling">**3. Modeling **</h4>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557299932203.png" alt=""></p>
 <p>**输入：**a set of paths of each user-item pair</p>
 <ol>
@@ -229,7 +228,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 随机选择一名用户（ID 为 u4825），从她的相互记录中选择<em>Shakespeare in Love</em></p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1557371826564.png" alt=""></p>
 <h4 id="总结">总结</h4>
-<p>本文主要介绍基于知识图谱中信息做推荐，主要应用于电影和音乐领域。是否可以应用到疾病-💊成分推荐？？？</p>
+<p>本文主要介绍基于知识图谱中信息做推荐，主要应用于电影和音乐领域。</p>
 <p>----------------------------------------&gt; 来自一只奋力登高望远的IT🦐</p>
 <h4 id="引用">引用</h4>
 <ol>
@@ -271,7 +270,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557373362569" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1557455996823" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -349,7 +348,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
           深度学习
         </a>
       
