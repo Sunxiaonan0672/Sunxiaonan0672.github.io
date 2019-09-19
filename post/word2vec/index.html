@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>长期依赖问题 | SunxiaonanBlog</title>
+<title>word2vec | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,51 +86,42 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>长期依赖问题</h1>
+            <h1>word2vec</h1>
             <p class="article-meta">
-              2019-04-28
-              
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
-                  深度学习
-                </a>
+              2019-09-19
               
             </p>
             
             <div class="post-content">
-              <h4 id="长期依赖问题的出现">长期依赖问题的出现</h4>
-<p>在循环神经网络（RNN）中存的一个问题便是<em>长期依赖文同</em></p>
-<!-- more -->
-<p>根据上一章节中介绍的BPTT算法，其中第t时刻损失函数对第k时刻隐藏层的净输入z_k的导数如下：</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439290762.png" alt=""></p>
-<p>将以上公式展开为：</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556439446414.png" alt=""></p>
-<p>以上展开式，我们可以发现～</p>
-<p>梯度爆炸问题：如果γ &gt; 1，当t−k → ∞时，γ(t−k) → ∞，会造成系统不稳定,则称作梯度爆炸
-梯度消失问题：如果γ &lt; 1，当t−k → ∞时，γ(t−k) → 0， 会出现和深度前馈神经网络类似的梯度消失问题</p>
-<p>由于RNN经常实用非线性激活函数为logistic 函数以及tanh函数，其导数图示如下：</p>
-<ol>
-<li>logistic 函数（sigmoid 函数）</li>
+              <p>word2vec是google在2013年推出的一个NLP工具，它的特点是将所有的词向量化，这样词与词之间就可以定量的去度量他们之间的关系，挖掘词之间的联系。</p>
+<p><strong>1.词向量基础</strong></p>
+<p>1.1-of-N representation或者one hot representation
+词向量表达在很久以前就出现了，最早词向量冗长，它使用是词向量维度大小 为整个词汇表的大小，对于每个具体的词汇表中的词，将对应的位置置为1。</p>
+<p>比如我们有下面的6个词组成的词汇表 [&quot;king&quot;,&quot;woman&quot;,&quot;queen&quot;,&quot;man&quot;,&quot;child&quot;,&quot;kid&quot;]，  词&quot;Queen&quot;的序号为3， 那么它的词向量就是(0,0,1,0,0,0)。同样的道理，词&quot;Woman&quot;的词向量就是(0,1,0,0,0,0)。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568864784466.png" alt=""></p>
+<p>虽然One hot representation表示词向量非常简单，但是存在最大的问题是由于词汇表一般都非常大，比如达到百万级别，这样每个词都用百万维的向量来表示简直是内存的灾难。而且只有对应词的位置是1，其余都是0</p>
+<ol start="2">
+<li>Distributed representation</li>
 </ol>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440773011.png" alt=""></p>
-<p>2.tanh 函数</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556440926561.jpg" alt=""></p>
-<p>从上图可以发现 sigmoid 函数的值域为（0，0.25]，tanh的值域也小于1，则如果时间间隔 t-k 过大，，δ_(t,k) 会趋向于 0，因此经常会出现梯度消失问题。</p>
-<p>因此，理论上简单的循环神经网络可以长时间间隔状态之间的依赖关系，但是由于梯度爆炸或者消失问题，实际上只能学习到短期的依赖关系。</p>
-<p>如果 t 时刻的输出 yt 依赖于 t − k 时刻的输入 x_(t−k) ，当间隔 k 比较大时，简单神经网络很难建模这种长距离的依赖关系，称为长期依赖问题(Long-Term Dependencies Problem)。</p>
-<p><strong>注意⚠️：</strong>  在循环神经网络中的梯度消失不是说 ∂L_t / ∂U 的梯度消失了， 而是∂L_t  / ∂h_k 的梯度消失了(当t−k比较大时)</p>
-<h4 id="总结">总结</h4>
-<p>本章主要分享了在实际中循环神经网络中容易出现依赖问题，下一章则会介绍解决方法。</p>
-<p>如有错误，请各路大神留言指教～🙏 🦐不胜感激。</p>
-<p>--------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
-<h4 id="引用">引用</h4>
-<ol>
-<li>
-<p>深度学习-邱锡鹏</p>
-</li>
-<li>
-<p>详解机器学习中的梯度消失、爆炸原因及其解决方法 <a href="https://blog.csdn.net/qq_25737169/article/details/78847691"></a></p>
-</li>
-</ol>
+<p>为了解决one-hot 问题，引入了Distributed representation，它的思路是通过训练，将每个词都映射到一个较短的词向量上来，所有的这些词向量就构成了向量空间，进而可以用普通的统计学的方法来研究词与词之间的关系。</p>
+<p>King这个词对应的词向量可能是(0.99,0.99,0.05,0.7)。当然在实际情况中，我们并不能对词向量的每个维度做一个很好的解释。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568871786990.png" alt=""></p>
+<p>只要得到了词汇表里所有词对应的词向量，那么我们就可以做很多有趣的事情了。不过，怎么训练得到合适的词向量呢？一个很常见的方法是使用神经网络语言模型。</p>
+<p><strong>2.CBOW与Skip-Gram用于神经网络语言模型</strong></p>
+<p>在word2vec出现之前，已经有用神经网络DNN来用训练词向量进而处理词与词之间的关系了。采用的方法一般是一个三层的神经网络结构（当然也可以多层），分为输入层，隐藏层和输出层(softmax层)。</p>
+<p>关于数据的输入和输出，一般分为CBOW(Continuous Bag-of-Words 与Skip-Gram两种模型。</p>
+<p>1）CBOW模型的训练输入是某一个特征词的上下文相关的词对应的词向量，而输出就是这特定的一个词的词向量。比如下面这段话，我们的上下文大小取值为4，特定的这个词是&quot;Learning&quot;，也就是我们需要的输出词向量,上下文对应的词有8个，前后各4个，这8个词是我们模型的输入。由于CBOW使用的是词袋模型，因此这8个词都是平等的，也就是不考虑他们和我们关注的词之间的距离大小，只要在我们上下文之内即可。</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568873991915.png" alt=""></p>
+<p>这样我们这个CBOW的例子里，我们的输入是8个词向量，输出是所有词的softmax概率（训练的目标是期望训练样本特定词对应的softmax概率最大），对应的CBOW神经网络模型输入层有8个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某8个词对应的最可能的输出中心词时，我们可以通过一次DNN前向传播算法并通过softmax激活函数找到概率最大的词对应的神经元即可。</p>
+<p>Skip-Gram模型和CBOW的思路是反着来的，即输入是特定的一个词的词向量，而输出是特定词对应的上下文词向量。还是上面的例子，我们的上下文大小取值为4， 特定的这个词&quot;Learning&quot;是我们的输入，而这8个上下文词是我们的输出。</p>
+<p>这样我们这个Skip-Gram的例子里，我们的输入是特定词， 输出是softmax概率排前8的8个词，对应的Skip-Gram神经网络模型输入层有1个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某1个词对应的最可能的8个上下文词时，我们可以通过一次DNN前向传播算法得到概率大小排前8的softmax概率对应的神经元所对应的词即可。</p>
+<p>以上就是神经网络语言模型中如何用CBOW与Skip-Gram来训练模型与得到词向量的大概过程。但是这和word2vec中用CBOW与Skip-Gram来训练模型与得到词向量的过程有很多的不同。</p>
+<p>**DNN模型的这个处理过程非常耗时。我们的词汇表一般在百万级别以上，这意味着我们DNN的输出层需要进行softmax计算各个词的输出概率的的计算量很大，因此word2vec并没有采用神经网络模型。有没有简化一点点的方法呢？
+**</p>
+<p><strong>3.word2vec基础之霍夫曼树</strong></p>
+<p>word2vec也使用了CBOW与Skip-Gram来训练模型与得到词向量，但是并没有使用传统的DNN模型。最先优化使用的数据结构是用霍夫曼树来代替隐藏层和输出层的神经元，霍夫曼树的叶子节点起到输出层神经元的作用，叶子节点的个数即为词汇表的小大。 而内部节点则起到隐藏层神经元的作用。</p>
+<pre><code>[哈夫曼树]()https://www.cnblogs.com/pinard/p/7160330.html
+</code></pre>
 
             </div>
           </article>
@@ -141,9 +132,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">
+              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">
                 <h3 class="post-title">
-                  循环神经网络-RNN之参数学习
+                  PaperRobot
                 </h3>
               </a>
             </div>
@@ -248,11 +239,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
           深度学习
         </a>
       
