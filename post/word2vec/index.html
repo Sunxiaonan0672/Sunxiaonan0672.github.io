@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568875267962">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568904361465">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -120,8 +120,41 @@
 **</p>
 <p><strong>3.word2vec基础之霍夫曼树</strong></p>
 <p>word2vec也使用了CBOW与Skip-Gram来训练模型与得到词向量，但是并没有使用传统的DNN模型。最先优化使用的数据结构是用霍夫曼树来代替隐藏层和输出层的神经元，霍夫曼树的叶子节点起到输出层神经元的作用，叶子节点的个数即为词汇表的小大。 而内部节点则起到隐藏层神经元的作用。</p>
-<pre><code>[哈夫曼树]()https://www.cnblogs.com/pinard/p/7160330.html
-</code></pre>
+<p><a href="https://www.cnblogs.com/pinard/p/7160330.html">霍夫曼树</a></p>
+<p>那么霍夫曼树有什么好处呢？一般得到霍夫曼树后我们会对叶子节点进行霍夫曼编码，由于权重高的叶子节点越靠近根节点，而权重低的叶子节点会远离根节点，这样我们的高权重节点编码值较短，而低权重值编码值较长。这保证的树的带权路径最短</p>
+<p><strong>4.基于Hierarchical Softmax</strong></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568876484270.png" alt=""></p>
+<p>对于CBOW 和Skip-gram两个模型，word2vec给出了两个框架，分别基于Hierarchical Softmax 和Negative Sampling</p>
+<p>本节介绍基于Hierarchical Softmax的CBOW 和Skip-gram的模型</p>
+<p>CBOW 模型的优化目标函数：</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568876979618.png" alt=""></p>
+<p>Skip-gram模型的优化的目标函数：</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568877047258.png" alt=""></p>
+<p>4.1 CBOW 模型</p>
+<p>4.1.1 网络结构</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568902240357.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568902461847.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568902539402.png" alt=""></p>
+<p>4.1.2 梯度计算</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568902867228.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568902913104.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903021858.png" alt=""></p>
+<p>被分为正类的概率</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903093841.png" alt=""></p>
+<p>被分为负类的概率</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903159349.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903263049.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903328172.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903398727.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903457598.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903515838.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903611813.png" alt=""></p>
+<p>4.2 skip-gram模型</p>
+<p>4.2.1 网络结构</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903707010.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903743785.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1568903781886.png" alt=""></p>
+<p>4.2.2 梯度计算</p>
 
             </div>
           </article>
@@ -153,7 +186,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568875267962" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568904361465" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -239,7 +272,7 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
           paper
         </a>
       
@@ -247,7 +280,7 @@
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
           Gridea
         </a>
       
