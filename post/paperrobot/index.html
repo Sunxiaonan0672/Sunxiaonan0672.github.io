@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568949564072">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1574748007464">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,14 +90,14 @@
             <p class="article-meta">
               2019-07-10
               
-                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
                   paper
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p><strong>PaperRobot: Incremental Draft Generation of Scientific Ideas</strong>
+              <p><strong>PaperRobot: Incremental Draft Generation of Scientific Ideas</strong><br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1562739057240.png" alt=""></p>
 <ol>
 <li>PaperRobot 自动撰写论文，即它从以前的论文中提取背景知识图谱，产生新的科学思想，最后写出论文的关键要素</li>
@@ -114,49 +114,49 @@
 <p>本文作者应用的是 Wei 等人在2013年提出的实体和关系提取系统，他们输入生物医学领域的已发表论文，PaperRobot从中提取出3类知识概念：疾病，化学和基因。然后进一步将所有知识概念类型链接到 CTD (比较遗传毒理学数据库)，提取出133个子类型的关系，比如标记/机制、治疗和提高表达。</p>
 <p>** Link Prediction**</p>
 <p>构建完成最初的知识图谱后，通过执行 “link prediction”丰富补充知识图谱，</p>
-<p>文中介绍上下文文本信息和图形结构对于表示一个实体都很重要，因此我们将它们结合起来为每个实体生成一个丰富的表示。基于实体表示，我们计算是否任意两个实体相似，如果两个实体相似，we propagate the neighbors of one entity to the other.
-比如：Calcium and Zinc 在文本信息以及知识图谱结构信息上是相似的，predict two new neighbors for Calcium: CD14 molecule and neuropilin 2 which are neighbors of Zinc in the initial KGs
+<p>文中介绍上下文文本信息和图形结构对于表示一个实体都很重要，因此我们将它们结合起来为每个实体生成一个丰富的表示。基于实体表示，我们计算是否任意两个实体相似，如果两个实体相似，we propagate the neighbors of one entity to the other.<br>
+比如：Calcium and Zinc 在文本信息以及知识图谱结构信息上是相似的，predict two new neighbors for Calcium: CD14 molecule and neuropilin 2 which are neighbors of Zinc in the initial KGs<br>
 如下图所示</p>
 <p>初始知识图谱用tuple表示</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563500948021.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1563500948021.png" alt=""></figure>
 <p>e_i 相关的文本描述s_i, s_i  is randomly selected from the sentences where ei occurs.</p>
 <p>randomly initialize vector representations e_i and r_i for e_i and r_i respectively</p>
 <p><strong>1)Graph Structure Encoder</strong></p>
 <p>为了获取每一个neighbor’s feature to e_i，利用self-attention and compute a weight distribution over N_e_i</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563503036019.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1563503036019.png" alt=""></figure>
 <p><strong>2）Contextual Text En- coder</strong></p>
 <p>每个实体e_i 都与一个文本句子[w_1,...w_l]相关 ,为了结合上线文本信息，LSTM 被用来获取hidden states H_s = [h_1 , ..., h_l ], where h_i represents the hidden state of w_i,Then we com- pute a bilinear attention weight for each word w_i</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563503671486.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1563503671486.png" alt=""></figure>
 <p><strong>3) Gated Combination</strong></p>
 <p>To combine the graph-based representation e ̃ and local context based representations eˆ, we design a gate function to balance these two types of information:</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563503812684.png" alt=""></p>
-<p><strong>4)Training and Prediction</strong>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1563503812684.png" alt=""></figure>
+<p><strong>4)Training and Prediction</strong><br>
 假设  h + r 约等于 t if (h, r, t) holds</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563504123677.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563504357591.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1563504123677.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1563504357591.png" alt=""></figure>
 <p><strong>New Paper Writing</strong></p>
 <p>基于输入的标题和预测的相关实体，可以自动写出了一篇新论文的摘要，根据摘要还可以写出结论部分和展望部分，通过展望甚至还可以生成新的标题。</p>
 <p>首先给出 a reference title T= [w1, ..., wl]，利用知识实体抽取方法抽取title中的实体，并且从知识图谱中检索出一系列相关实体，并根据confidence scores 筛选出前10个相关实体 E_t= [e_t1 , ..., e_tv ]. Then we feed T and E_t together into the paper generation framework as shown in Figure 2.</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563507717438.png" alt=""></p>
-<p><strong>1)Reference Encoder</strong>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1563507717438.png" alt=""></figure>
+<p><strong>1)Reference Encoder</strong><br>
 we randomly embed it into a vector and obtain T = [w1 , ..., wl ]. Then, we apply a bi-directional Gated Recurrent Unit (GRU) encoder  on T to produce the en- coder hidden states H = [h1, ..., hl]</p>
-<p><strong>2)Decoder Hidden State Initialization</strong>
-筛选出的实体并非全都是相关的，因此利用了memory- attention networks to further filter the irrelevant ones.
-related entities E=[e1,...,ev], we randomly initialize their vector representation E = [e1,...,ev]
+<p><strong>2)Decoder Hidden State Initialization</strong><br>
+筛选出的实体并非全都是相关的，因此利用了memory- attention networks to further filter the irrelevant ones.<br>
+related entities E=[e1,...,ev], we randomly initialize their vector representation E = [e1,...,ev]<br>
 use the last hidden state of reference en- coder hl as the first query vector q0, and iteratively compute the attention distribution over all memo- ries and update the query vector:</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563515108056.png" alt=""></p>
-<p><strong>3）Memory Network</strong>
+<figure data-type="image" tabindex="8"><img src="https://Sunxiaonan0672.github.io/post-images/1563515108056.png" alt=""></figure>
+<p><strong>3）Memory Network</strong><br>
 To better capture the contri- bution of each entity ej to each decoding output, at each decoding step i, we compute an attention weight for each entity and apply a memory net- work to refine the weights multiple times. We take the hidden state h ̃ i as the initial query q ̃0 = h ̃ i and iteratively update it:</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563515347292.png" alt="">
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1563515347292.png" alt=""><br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1563515426216.png" alt=""></p>
 <p><strong>4）Reference Attention</strong></p>
-<p>获取reference title中的每个word 对 decoding output 的奉献，At each time step i, the decoder receives the pre- vious word embedding and generate decoder state h ̃ i , the attention weight of each reference token is computed as:
+<p>获取reference title中的每个word 对 decoding output 的奉献，At each time step i, the decoder receives the pre- vious word embedding and generate decoder state h ̃ i , the attention weight of each reference token is computed as:<br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1563516000093.png" alt=""></p>
 <p><strong>5）Generator</strong></p>
 <p>at each decoding step i, for each word w, we aggregate its attention</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563517126945.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1563517193213.png" alt=""></p>
-<p><strong>6）Repetition Removal</strong>
+<figure data-type="image" tabindex="9"><img src="https://Sunxiaonan0672.github.io/post-images/1563517126945.png" alt=""></figure>
+<figure data-type="image" tabindex="10"><img src="https://Sunxiaonan0672.github.io/post-images/1563517193213.png" alt=""></figure>
+<p><strong>6）Repetition Removal</strong><br>
 apply beam search（波速搜索） with beam size 4 to generate each output, if a word is not a stop word or punctuation and it is already generated in the previous context, we will not choose it again in the same output.</p>
 <p>beam search（波速搜索）具体实现后续更新。。。</p>
 <p><strong>Experiment</strong></p>
@@ -165,9 +165,9 @@ apply beam search（波速搜索） with beam size 4 to generate each output, if
 <p>To construct ground truth for new title prediction, if a human written paper A cites a paper B, we assume the title of A is gen- erated from B’s conclusion and future work ses- sion.</p>
 <p><strong>2）Automatic Evaluation</strong></p>
 <p>后续更新。。。。</p>
-<p><strong>Remaining Challenges</strong>
+<p><strong>Remaining Challenges</strong><br>
 Our generation model is still largely dependent on language model and extracted facts, and thus it lacks of knowledge reasoning.</p>
-<p><strong>总结</strong>
+<p><strong>总结</strong><br>
 实验部分还没有看完，继续更新中。。。</p>
 
             </div>
@@ -200,7 +200,7 @@ Our generation model is still largely dependent on language model and extracted 
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568949564072" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1574748007464" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -222,6 +222,12 @@ Our generation model is still largely dependent on language model and extracted 
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+            </li>
+          
         
           
             <li>
@@ -286,15 +292,15 @@ Our generation model is still largely dependent on language model and extracted 
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
-          paper
-        </a>
-      
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge warning">
           Gridea
         </a>
       

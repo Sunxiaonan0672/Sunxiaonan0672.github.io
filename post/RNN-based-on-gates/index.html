@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568949564072">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1574748007464">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-05-05
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
                   深度学习
                 </a>
               
@@ -103,17 +103,17 @@
 <h2 id="1-lstm">1.  LSTM</h2>
 <p>1 . LSTM  简介</p>
 <p>LSTM 是循环神经网络的一个变体，可以有效的解决简单的梯度消失或消失问题。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557049727798.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557049727798.png" alt=""></figure>
 <p>公式(1)                                  h_t = h_(t−1) + g(x_t, h_(t−1); θ)</p>
 <p>在公式(1)的基础上，LSTM 网络主要更改的为：</p>
 <p><strong>1. 新的内部状态(internal states)</strong> c_t专门进行线性的循环信息传递，同时(非线性)输出信息给隐藏层的外部状态h_t。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557043623136.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557044000039.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1557043623136.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1557044000039.png" alt=""></figure>
 <p>其中 f_t，i_t 和 o_t 为三个门(gate)来控制信息传递的路径;⊙ 为向量元素乘积; c_(t−1) 为上一时刻的记忆单元;c ̃t是通过非线性函数得到候选状态。</p>
 <p>在每个时刻 t，LSTM 网络的内部状态 c_t 记录了到当前时刻为止的历史信息。</p>
-<p><strong>2. 机制门</strong>
+<p><strong>2. 机制门</strong><br>
 LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门”是一种“软门”，取值{0,1}之间，表示一定比例运行信息进入。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557045809930.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1557045809930.png" alt=""></figure>
 <p>其中 σ(·) 为 logistic 函数，其输出区间为 (0, 1)，x_t 为当前时刻的输入，h_(t−1) 为 上一时刻的外部状态</p>
 <p>其中</p>
 <ol>
@@ -128,7 +128,7 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
 </li>
 </ol>
 <p><strong>LSTM 计算过程</strong></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557046704003.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1557046704003.png" alt=""></figure>
 <p>LSTM循环单元结构</p>
 <p>由上图所示</p>
 <ol>
@@ -185,7 +185,7 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568949564072" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1574748007464" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -207,6 +207,12 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+            </li>
+          
         
           
             <li>
@@ -271,12 +277,12 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
-          paper
-        </a>
-      
         <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
           深度学习
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
+          paper
         </a>
       
         <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">

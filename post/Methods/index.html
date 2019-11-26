@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568949564072">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1574748007464">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -106,14 +106,14 @@
 </ul>
 <p>权重衰减是通过给参数增加 L_1 或 L_2 范数的正则化项来限制参数的取值范 围，从而使得 γ ≤ 1。</p>
 <p>梯度截断是另一种有效的启发式方法，当梯度的模大于一 定阈值时，就将它截断成为一个较小的数。</p>
-<p><strong>2. 梯度消失：</strong>
+<p><strong>2. 梯度消失：</strong><br>
 <em>梯度消失</em> 是循环网络的主要问题，除了通过优化技巧来避免梯度消失问题，改进模型是更有效的方法</p>
 <p>比如：<em>U = I</em> ， 同时* f′(z_i) = 1*</p>
 <p><em>h_t =h_(t−1 )+g(x_t;θ)</em>                               其中 g(·) 是一个非线性函数，θ 为参数</p>
 <p>由以上公式可知，h_t 和h_(t-1)之间为线性依赖关系，且权重系数为1，这样就不存在梯度消失问题了。</p>
 <p>然而，这种变换也丢失了神经元在反馈边上的非线性激活的性质，从而降低了模型的表达能力。、</p>
-<p>改进：
-<em>h_t = h_(t−1) + g(x_t, h_(t−1); θ)</em>
+<p>改进：<br>
+<em>h_t = h_(t−1) + g(x_t, h_(t−1); θ)</em><br>
 这样h_t和h_(t-1)既有线性关系也有非线性关系，这在一定程度上可以缓解梯度消失问题。但是随着h_t 不断积累存储新的输入信息，会产生饱和现象。</p>
 <p>假设g(·)为logistic函数，则随着时间 t 的增长，h_t 会变得越来越大，从而导致 h 变得饱和。也就是说， 隐状态 h_t 可以存储的信息是有限的，随着记忆单元存储的内容越来越多，其丢失的信息也越来越多。这个问题就是就是<em>记忆容量(memory capacity)</em></p>
 <h5 id="解决记忆容量方法">解决记忆容量方法</h5>
@@ -159,7 +159,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568949564072" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1574748007464" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -181,6 +181,12 @@
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+            </li>
+          
         
           
             <li>
@@ -245,15 +251,15 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
-          paper
-        </a>
-      
         <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge secondary">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
           Gridea
         </a>
       

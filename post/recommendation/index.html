@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1568949564072">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1574748007464">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-05-07
               
-                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+                <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
                   paper
                 </a>
               
@@ -98,7 +98,7 @@
             
             <div class="post-content">
               <h4 id="explainable-reasoning-over-knowledge-graphs-for-recommendation">Explainable Reasoning over Knowledge Graphs for Recommendation</h4>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557218821493.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557218821493.png" alt=""></figure>
 <p><strong>背景介绍</strong></p>
 <p>近年来整合知识图谱到推进系统中受到高度关注，通过探索知识图中的链接，可以发现用户和项目之间的连接作为路径，为用户项目交互提供丰富和充分的信息。然而这种连接不仅揭示了实体与关系的语义，而且有助于推断出用户的兴趣。但是，现有的工作还没有充分探索这种连接来推断用户偏好，特别是在对路径内部的顺序依赖性和整体语义进行建模方面。</p>
 <p><strong>本文目的</strong></p>
@@ -109,7 +109,7 @@
 <h4 id="1-introduction"><strong>1. Introduction</strong></h4>
 <p>前期实验表明整合辅助数据（user profiles &amp; item attributes）到推荐系统中，有利于提高推荐系统的准确性。由于知识图谱包含了广泛的辅助数据，比如商品项目的背景知识和它们之间的关系等，因此受到了高度关注。知识图谱items之间的关系表示为(Ed Sheeran, IsSingerOf, Shape of You)</p>
 <p>Extra user-item connectivity information derived from KG endows recommender systems the ability of reasoning and explainability。Taking music recommendation as an example (Figure 1), a user is connected to I See Fire since she likes Shape of You sung by the same singer Ed Sheeran。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557294044985.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1557294044985.png" alt=""></figure>
 <p><strong>Running Example:</strong> (Alice, Interact, Shape of You)^(Shape of You, SungBy, Ed Sheeran)^(Ed Sheeran, IsSingerOf, I See Fire) =&gt; (Alice, Interact, I See Fire).</p>
 <p><strong>前期难点与本文创新</strong></p>
 <p>Prior efforts on knowledge-aware recommendation are roughly categorized into <em>path and embedding fashion</em></p>
@@ -127,16 +127,16 @@
 <h4 id="2-本文任务定义"><strong>2. 本文任务定义</strong></h4>
 <p>KPRN not only generates representations for paths by accounting for both entities and relations, but also performs reasoning based on paths to infer user preference。</p>
 <p><strong>knowledge Graph (KG)</strong></p>
-<p>nodes are entities E and edges R denote their relations.
+<p>nodes are entities E and edges R denote their relations.<br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1557298568504.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557298629379.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1557298629379.png" alt=""></figure>
 <p>知识图谱中的三元组清晰的描述了items 之间的直接或者间接（多步）的关系特性，即组成了users与items之间的一条或多条路径。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299248167.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299305569.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299355135.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1557299248167.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1557299305569.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1557299355135.png" alt=""></figure>
 <p><strong>Task Definition</strong></p>
 <p>给定用户u和目标物品i，以及 (u,i) 对间的知识图谱路径集合 P(u,i)={P_1, …, P_k} ，对用户u与物品i发生交互的可能性做估计（CTR）。 Y_{u,i} = f_theta(u,i|P(u,i)) 。最终根据 Y_{u,i} 排序做Top-N推荐。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1557299588690.png" alt=""></figure>
 <h4 id="3-modeling">**3. Modeling **</h4>
 <p><strong>流程:</strong></p>
 <p>1.extract qualified paths between a user-item pair from the KG, each of which consists of the related entities and relation</p>
@@ -148,7 +148,7 @@
 <p>a pooling operation is performed to aggregate the representations of paths to obtain prediction signal for the user-item pair.</p>
 </li>
 </ol>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557299932203.png" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="https://Sunxiaonan0672.github.io/post-images/1557299932203.png" alt=""></figure>
 <p><strong>输入：</strong> a set of paths of each user-item pair</p>
 <ol>
 <li>
@@ -162,31 +162,31 @@
 </li>
 </ol>
 <p><strong>embedding layer</strong></p>
-<p>给出一个路径p_k， the type (e.g., person or movie) and specific value (e.g., Peter Jackson or The Hobbit II) of each entity into two separate embedding vectors
+<p>给出一个路径p_k， the type (e.g., person or movie) and specific value (e.g., Peter Jackson or The Hobbit II) of each entity into two separate embedding vectors<br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1557303185969.png" alt=""></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303251185.png" alt=""></p>
+<figure data-type="image" tabindex="9"><img src="https://Sunxiaonan0672.github.io/post-images/1557303251185.png" alt=""></figure>
 <p><strong>LSTM layer</strong></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303425258.png" alt=""></p>
+<figure data-type="image" tabindex="10"><img src="https://Sunxiaonan0672.github.io/post-images/1557303425258.png" alt=""></figure>
 <p>h_(l-1) and x_(l-1) 被用来计算下一个 path-step l</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557303534321.png" alt=""></p>
-<p>Taking advantages of the memory state, the last state hL is capable of representing the whole path pk.
-通过建立p_k表达，我们目的预测 t = (u,interact,i) 的合理性。
-Towards this end, two fully-connected layers are adopted to project the final state into the predictive score for output, given by：
+<figure data-type="image" tabindex="11"><img src="https://Sunxiaonan0672.github.io/post-images/1557303534321.png" alt=""></figure>
+<p>Taking advantages of the memory state, the last state hL is capable of representing the whole path pk.<br>
+通过建立p_k表达，我们目的预测 t = (u,interact,i) 的合理性。<br>
+Towards this end, two fully-connected layers are adopted to project the final state into the predictive score for output, given by：<br>
 <img src="https://Sunxiaonan0672.github.io/post-images/1557304008775.png" alt=""></p>
 <p><strong>pooling 层</strong></p>
 <p>S = {s1,s2,···,sK} be the predictive scores for K paths, P(u, i) = {p_1, p_2, · · · , p_K }, connecting a user-item pair (u,i), where each element is calculated based on Equation (4). 最终的预测 the average of the scores of all paths, which is formulated as</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557304578195.png" alt=""></p>
+<figure data-type="image" tabindex="12"><img src="https://Sunxiaonan0672.github.io/post-images/1557304578195.png" alt=""></figure>
 <p>然而 由于不同路径对模型具有不同的贡献，while Equation (5) fails to specify importance of each path。</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557304821664.png" alt=""></p>
+<figure data-type="image" tabindex="13"><img src="https://Sunxiaonan0672.github.io/post-images/1557304821664.png" alt=""></figure>
 <h4 id="learning"><strong>Learning</strong></h4>
-<p>我们可以把推荐问题看作二分类问题， observed user- item interaction is assigned a target value 1, otherwise 0
+<p>我们可以把推荐问题看作二分类问题， observed user- item interaction is assigned a target value 1, otherwise 0<br>
 采用negative log-likelihood 做为 objective function</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557305614281.png" alt=""></p>
+<figure data-type="image" tabindex="14"><img src="https://Sunxiaonan0672.github.io/post-images/1557305614281.png" alt=""></figure>
 <p>并且conduct L2 regularization on the trainable parameters , 从而以防过拟合。</p>
 <h4 id="4-experiments"><strong>4. Experiments</strong></h4>
 <p><strong>Dataset Description</strong></p>
 <p>应用于movie recommendation and music recommendation</p>
-<p>其中，电影领域数据为 MovieLens-1M1 and IMDb2 datasets，named MI
+<p>其中，电影领域数据为 MovieLens-1M1 and IMDb2 datasets，named MI<br>
 MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有关电影的辅助信息，such as genre, actor, director, and writer等。</p>
 <p>关于音乐领域，采用的数据来源KKBox，其中不仅包含了user-item interaction data，还包含了音乐的描述，如singer, songwriter, and genre 等。</p>
 <p>如果user 评价movie，便设置user-movie pair 为positive with the target value of 1, and 0 otherwise。</p>
@@ -219,14 +219,14 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 <ol>
 <li>Effects of Relation Modeling （without the relation modeling, termed as KPRN-r）</li>
 </ol>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557370001845.png" alt=""></p>
+<figure data-type="image" tabindex="15"><img src="https://Sunxiaonan0672.github.io/post-images/1557370001845.png" alt=""></figure>
 <p>2.Effects of Weighted Pooling （set the value   as {0.01,0.1,1,10}）</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557370149486.png" alt=""></p>
+<figure data-type="image" tabindex="16"><img src="https://Sunxiaonan0672.github.io/post-images/1557370149486.png" alt=""></figure>
 <p><strong>When   decrease from 1 to 0.1, the weighted pooling operation degrades the performance, since it is similar to max-pooling and selects only the most important paths as the user-item connectivity.</strong></p>
 <p><strong>The performance w.r.t. hit@K and ndcg@K becomes poorer, when increasing   from 1 to 10. It makes sense since it tends to aggregate contributions from more paths, rather than the most informative ones</strong></p>
-<p><strong>3.3. Case Studies</strong>
+<p><strong>3.3. Case Studies</strong><br>
 随机选择一名用户（ID 为 u4825），从她的相互记录中选择<em>Shakespeare in Love</em></p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1557371826564.png" alt=""></p>
+<figure data-type="image" tabindex="17"><img src="https://Sunxiaonan0672.github.io/post-images/1557371826564.png" alt=""></figure>
 <h4 id="总结">总结</h4>
 <p>本文主要介绍基于知识图谱中信息做推荐，主要应用于电影和音乐领域。</p>
 <p>----------------------------------------&gt; 来自一只奋力登高望远的IT🦐</p>
@@ -270,7 +270,7 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1568949564072" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1574748007464" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -292,6 +292,12 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+            </li>
+          
         
           
             <li>
@@ -356,15 +362,15 @@ MovieLens-1M 提供 user-item interaction 数据,  IMDb 做为 KG 包含了有�
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
-          paper
-        </a>
-      
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
           Gridea
         </a>
       

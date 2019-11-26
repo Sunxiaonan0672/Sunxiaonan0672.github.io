@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>循环神经网络-RNN之参数学习 | SunxiaonanBlog</title>
+<title>NLP介绍 | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,9 +86,9 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>循环神经网络-RNN之参数学习</h1>
+            <h1>NLP介绍</h1>
             <p class="article-meta">
-              2019-04-26
+              2019-11-26
               
                 <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
                   深度学习
@@ -97,53 +97,22 @@
             </p>
             
             <div class="post-content">
-              <p><strong>RNN参数学习</strong>  — 上一小结简单讲述了RNN的基本结构和应用模式。本章主要分享一下该网络的参数学习。</p>
-<!-- more -->
-<p>循环神经网络的参数可以通过梯度下降方法来进行学习。</p>
-<p>在循环神经网络中主要有两种计算梯度的方式：随时间<em>反向传播（BPTT）</em>  和 <em>实时循环学习（RTRL）</em></p>
-<p>接下来主要介绍这两种计算梯度的方式</p>
-<!-- more -->
-<h4 id="损失函数">损失函数</h4>
-<p>本文均以随机梯度下降为🌰，损失函数可以采用交叉熵。损失函数的具体详情如下</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1556250122937.jpeg" alt=""></figure>
-<p>因此，整个序列的损失函数为</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1556250295330.png" alt=""></figure>
-<h4 id="参数计算">参数计算</h4>
-<p>以整个序列损失函数 L 关于参数 U 的梯度为例🌰，其梯度为</p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1556250622728.png" alt=""></figure>
-<p>即每个时刻损失 Lt 对参数 U 的偏导数之和。</p>
-<h4 id="梯度计算方式">梯度计算方式</h4>
-<ol>
-<li>
-<p><strong>随时间反向传播算法（BPTT）</strong></p>
-<p>BPTT 算法将循环神经网络看作是一个展开的多层前馈网络，其中“每一 层”对应循环网络中的“每个时刻”（如下图所示）<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556251001069.jpg" alt=""></p>
-<p>在“展开”的循环神经网络中，所有层的参数是共享的（因此参数的真实梯度是将所有“展开层”的参数梯度 之和）<br>
-<strong>计算偏导数</strong></p>
-<p>🌰 ～ 根据RNN的损失函数，先计算第 t 时刻损失对参数 U 的偏导数 ∂L_t／∂U</p>
-<p>因为参数U 跟隐藏层每个时刻k（1&lt;= k &lt;=t）的净输入z_k = U h_k−1 + W x_k +b 有关，因此<br>
-因此第t时刻损失的损失函数L_t关于参数U的梯度为下图<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421323127.jpeg" alt=""></p>
-<p>随时间反向传播算法示例<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556421386145.png" alt=""></p>
-</li>
-<li>
-<p><strong>实时循环学习（RTRL）</strong><br>
-与反向传播算法不同的是，实时传播算法（Real-Time Recurrent Learning，RTRL）是通过前向传播的方式来计算梯度。<br>
-具体操作如下图所示<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556430047120.jpeg" alt=""></p>
-</li>
-</ol>
-<p>参数 W 和 b 的梯度也可以同样按上述方法实时计算。</p>
-<h4 id="bptt与rtrl比较">BPTT与RTRL比较</h4>
-<p>前者通过反向模式计算梯度，后者利用前向模式计算梯度。 BPTT 算法的计算量会更小，但是 BPTT 算法需 要保存所有时刻的中间梯度，空间复杂度较高。RTRL 算法不需要梯度回传，因 此非常适合用于需要在线学习或无限序列的任务中。</p>
-<h4 id="总结">总结</h4>
-<p>这一章节总结了循环神经网络的梯度计算，奈何本人学识有限，存在错误的地方请多多指教🙏</p>
-<p>-----------------------------------------------------------来自一枚努力学习工作的IT🦐</p>
-<h5 id="引用">引用</h5>
-<ol>
-<li>深度学习-邱锡鹏</li>
-</ol>
+              <p><strong>1.什么是自然语言处理（NLP）</strong><br>
+自然语言 约等于 人类语言<br>
+而区别于人工语言<br>
+自然语言处理包括语音识别，自然语言理解，自然语言生成，人机交互以及涉及到的中间阶段<br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1574739216239.png" alt=""></p>
+<p><strong>2.NLP的发展</strong><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1574747428035.png" alt=""></p>
+<p><strong>3.NLP分类</strong><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1574747480593.png" alt=""><br>
+3.1 典型的任务<br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1574747677942.png" alt=""></p>
+<p><strong>4.NLP的技术路线</strong><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1574747802576.png" alt=""></p>
+<p><strong>5.引用</strong><br>
+1.面向自然语言处理的深度学习基础   邱锡鹏<br>
+2.nlp学习之路-https://zhuanlan.zhihu.com/p/56802149</p>
 
             </div>
           </article>
@@ -154,9 +123,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">
                 <h3 class="post-title">
-                  循环神经网络-RNN之简介
+                  word2vec- Hierarchical Softmax
                 </h3>
               </a>
             </div>
@@ -267,7 +236,7 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
           深度学习
         </a>
       
