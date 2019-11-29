@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>NLP介绍 | SunxiaonanBlog</title>
+<title>ELMO-Deep contextualized word representations | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,33 +86,59 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>NLP介绍</h1>
+            <h1>ELMO-Deep contextualized word representations</h1>
             <p class="article-meta">
-              2019-11-26
-              
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
-                  深度学习
-                </a>
+              2019-11-28
               
             </p>
             
             <div class="post-content">
-              <p><strong>1.什么是自然语言处理（NLP）</strong><br>
-自然语言 约等于 人类语言<br>
-而区别于人工语言<br>
-自然语言处理包括语音识别，自然语言理解，自然语言生成，人机交互以及涉及到的中间阶段<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574739216239.png" alt=""></p>
-<p><strong>2.NLP的发展</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747428035.png" alt=""></p>
-<p><strong>3.NLP分类</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747480593.png" alt=""><br>
-3.1 典型的任务<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747677942.png" alt=""></p>
-<p><strong>4.NLP的技术路线</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747802576.png" alt=""></p>
-<p><strong>5.引用</strong><br>
-1.面向自然语言处理的深度学习基础   邱锡鹏<br>
-2.nlp学习之路-https://zhuanlan.zhihu.com/p/56802149</p>
+              <p><strong>1.概述</strong><br>
+文章提出了一种word representations（ELMO）</p>
+<p>好的词向量模型不仅能够表达词的复杂特性，比如语义和语法的特性，也要能够刻画这些特性在不同语言上下文中的变化</p>
+<p>传统的词向量模型当中，学到的向量表示更多的是一种上下文独立的表示。过去一般会使用 subword information 来增强词向量表示，或者是为每个word sense 学习一个向量表示。这篇文章中的方法既有使用Character CNN来捕获 subword information，也有学习到 multi sense information。</p>
+<p>文章中通过学习一个 deep bidirectional language model (biLM)，将词向量表示为 biLM 的内,部状态的函数（也不仅仅是简单的取最后一层的表示）。从而，学到的每个 word representation 不再仅仅是一个 word 的函数，而是整个 sentence 的函数。</p>
+<p><strong>2.模型结构</strong></p>
+<p>1）Bidirectional language models</p>
+<p>给定N 个tokens 的序列 （t1,t2,..tN)</p>
+<p>a forward language model computes the probability of the sequence by modeling the probability of toten tk given the history(t1,t2,...tN)</p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1574994688749.png" alt=""></figure>
+<p>A backward LM is similar to a forward LM, except it runs over the sequence in reverse, predict- ing the previous token given the future context:</p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1574995054093.png" alt=""></figure>
+<p><strong>BiLM 是要计算前向和后项联合极大对数似然估计</strong></p>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1574996278300.png" alt=""></figure>
+<p>2）ELMO<br>
+ELMO是一个BiLM中间层表示的任务特定组合<br>
+对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示</p>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1574999566885.png" alt=""></figure>
+<p>对于不同特定任务，compute a task specific weighting of all biLM layers:</p>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1574999745720.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1574999795341.png" alt=""></figure>
+<p><strong>3.Using biLMs for supervised NLP tasks</strong></p>
+<p>假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。<br>
+比如，现在的监督任务模型使用通常的 word embedding，x_emb作为输入，经过几层 RNN，每个词得到一个相应的输出 h_rnn,</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1575000122298.png" alt=""><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1575007116040.png" alt=""></p>
+<pre><code>                        [h_k,ELMO_k]
+</code></pre>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1575007257783.png" alt=""></figure>
+<p>ELMO模型中适当的加入dropout或者将ELMO模型中加入regularize，会更好。</p>
+<p><strong>4.Pre-trained biLM architecture</strong></p>
+<p>本文使用的 biLM 中<br>
+首先对每个 word 中的 character 做 convolution 得到 word 的表示，具体的使用的 conv 共有 2048 filters， 后面接两个highway layer，再做线性投射到 512 dim，后面接 2 层 lstm. 最后为每个 word 提供了 3 层的表示<br>
+而传统的 word embedding 的方式只提供了 1 层的表示。</p>
+<p>在 biLM 预训练完毕之后，就可以为特定的任务计算向量表示了。<br>
+文章中提到在有些 case 当中，用domain specific 的数据对 biLM 做 fine tuning 会带来 perplexity 的显著下降和下游任务性能的提升。</p>
+<p><strong>5.参考</strong></p>
+<p>1）<strong>ELMo: Deep contextualized word representations 阅读笔记</strong><br>
+（https://www.tvect.cn/archives/55）</p>
+<p>2）<strong>ELMo最好用词向量Deep Contextualized Word Representations</strong><br>
+（https://zhuanlan.zhihu.com/p/38254332）<br>
+3）<strong>word representations</strong><br>
+（https://note.youdao.com/ynoteshare1/index.html?id=528a1e74487d642ed5b46b4e83ca99e2&amp;type=note）</p>
+<p>6.作者寄语</p>
+<p>来自一直永不言弃的小🦐的努力⛽️</p>
+<p>​</p>
 
             </div>
           </article>
@@ -123,9 +149,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">
                 <h3 class="post-title">
-                  word2vec- Hierarchical Softmax
+                  NLP介绍
                 </h3>
               </a>
             </div>
@@ -238,11 +264,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
           paper
         </a>
       

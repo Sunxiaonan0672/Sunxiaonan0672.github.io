@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Sunxiaonan0672.github.io</id>
     <title>SunxiaonanBlog</title>
-    <updated>2019-11-26T06:00:40.293Z</updated>
+    <updated>2019-11-29T06:38:33.678Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Sunxiaonan0672.github.io"/>
     <link rel="self" href="https://Sunxiaonan0672.github.io/atom.xml"/>
@@ -10,6 +10,60 @@
     <logo>https://Sunxiaonan0672.github.io/images/avatar.png</logo>
     <icon>https://Sunxiaonan0672.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, SunxiaonanBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[ELMO-Deep contextualized word representations]]></title>
+        <id>https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations</id>
+        <link href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">
+        </link>
+        <updated>2019-11-28T10:21:20.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>1.概述</strong><br>
+文章提出了一种word representations（ELMO）</p>
+<p>好的词向量模型不仅能够表达词的复杂特性，比如语义和语法的特性，也要能够刻画这些特性在不同语言上下文中的变化</p>
+<p>传统的词向量模型当中，学到的向量表示更多的是一种上下文独立的表示。过去一般会使用 subword information 来增强词向量表示，或者是为每个word sense 学习一个向量表示。这篇文章中的方法既有使用Character CNN来捕获 subword information，也有学习到 multi sense information。</p>
+<p>文章中通过学习一个 deep bidirectional language model (biLM)，将词向量表示为 biLM 的内,部状态的函数（也不仅仅是简单的取最后一层的表示）。从而，学到的每个 word representation 不再仅仅是一个 word 的函数，而是整个 sentence 的函数。</p>
+<p><strong>2.模型结构</strong></p>
+<p>1）Bidirectional language models</p>
+<p>给定N 个tokens 的序列 （t1,t2,..tN)</p>
+<p>a forward language model computes the probability of the sequence by modeling the probability of toten tk given the history(t1,t2,...tN)</p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1574994688749.png" alt=""></figure>
+<p>A backward LM is similar to a forward LM, except it runs over the sequence in reverse, predict- ing the previous token given the future context:</p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1574995054093.png" alt=""></figure>
+<p><strong>BiLM 是要计算前向和后项联合极大对数似然估计</strong></p>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1574996278300.png" alt=""></figure>
+<p>2）ELMO<br>
+ELMO是一个BiLM中间层表示的任务特定组合<br>
+对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示</p>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1574999566885.png" alt=""></figure>
+<p>对于不同特定任务，compute a task specific weighting of all biLM layers:</p>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1574999745720.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1574999795341.png" alt=""></figure>
+<p><strong>3.Using biLMs for supervised NLP tasks</strong></p>
+<p>假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。<br>
+比如，现在的监督任务模型使用通常的 word embedding，x_emb作为输入，经过几层 RNN，每个词得到一个相应的输出 h_rnn,</p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1575000122298.png" alt=""><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1575007116040.png" alt=""></p>
+<pre><code>                        [h_k,ELMO_k]
+</code></pre>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1575007257783.png" alt=""></figure>
+<p>ELMO模型中适当的加入dropout或者将ELMO模型中加入regularize，会更好。</p>
+<p><strong>4.Pre-trained biLM architecture</strong></p>
+<p>本文使用的 biLM 中<br>
+首先对每个 word 中的 character 做 convolution 得到 word 的表示，具体的使用的 conv 共有 2048 filters， 后面接两个highway layer，再做线性投射到 512 dim，后面接 2 层 lstm. 最后为每个 word 提供了 3 层的表示<br>
+而传统的 word embedding 的方式只提供了 1 层的表示。</p>
+<p>在 biLM 预训练完毕之后，就可以为特定的任务计算向量表示了。<br>
+文章中提到在有些 case 当中，用domain specific 的数据对 biLM 做 fine tuning 会带来 perplexity 的显著下降和下游任务性能的提升。</p>
+<p><strong>5.参考</strong></p>
+<p>1）<strong>ELMo: Deep contextualized word representations 阅读笔记</strong><br>
+（https://www.tvect.cn/archives/55）</p>
+<p>2）<strong>ELMo最好用词向量Deep Contextualized Word Representations</strong><br>
+（https://zhuanlan.zhihu.com/p/38254332）<br>
+3）<strong>word representations</strong><br>
+（https://note.youdao.com/ynoteshare1/index.html?id=528a1e74487d642ed5b46b4e83ca99e2&amp;type=note）</p>
+<p>6.作者寄语</p>
+<p>来自一直永不言弃的小🦐的努力⛽️</p>
+<p>​</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[NLP介绍]]></title>
         <id>https://Sunxiaonan0672.github.io/post/nlp-jie-shao</id>
@@ -635,38 +689,6 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
 <ol>
 <li>深度学习----邱锡鹏</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/hello-gridea</id>
-        <link href="https://Sunxiaonan0672.github.io/post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>
