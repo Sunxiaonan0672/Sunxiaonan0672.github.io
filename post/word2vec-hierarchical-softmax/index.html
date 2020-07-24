@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1575009504770">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -98,20 +98,20 @@
 <p>1.1-of-N representation或者one hot representation<br>
 词向量表达在很久以前就出现了，最早词向量冗长，它使用是词向量维度大小 为整个词汇表的大小，对于每个具体的词汇表中的词，将对应的位置置为1。</p>
 <p>比如我们有下面的6个词组成的词汇表 [&quot;king&quot;,&quot;woman&quot;,&quot;queen&quot;,&quot;man&quot;,&quot;child&quot;,&quot;kid&quot;]，  词&quot;Queen&quot;的序号为3， 那么它的词向量就是(0,0,1,0,0,0)。同样的道理，词&quot;Woman&quot;的词向量就是(0,1,0,0,0,0)。</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1568864784466.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1568864784466.png" alt="" loading="lazy"></figure>
 <p>虽然One hot representation表示词向量非常简单，但是存在最大的问题是由于词汇表一般都非常大，比如达到百万级别，这样每个词都用百万维的向量来表示简直是内存的灾难。而且只有对应词的位置是1，其余都是0</p>
 <ol start="2">
 <li>Distributed representation</li>
 </ol>
 <p>为了解决one-hot 问题，引入了Distributed representation，它的思路是通过训练，将每个词都映射到一个较短的词向量上来，所有的这些词向量就构成了向量空间，进而可以用普通的统计学的方法来研究词与词之间的关系。</p>
 <p>King这个词对应的词向量可能是(0.99,0.99,0.05,0.7)。当然在实际情况中，我们并不能对词向量的每个维度做一个很好的解释。</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1568871786990.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1568871786990.png" alt="" loading="lazy"></figure>
 <p>只要得到了词汇表里所有词对应的词向量，那么我们就可以做很多有趣的事情了。不过，怎么训练得到合适的词向量呢？一个很常见的方法是使用神经网络语言模型。</p>
 <p><strong>2.CBOW与Skip-Gram用于神经网络语言模型</strong></p>
 <p>在word2vec出现之前，已经有用神经网络DNN来用训练词向量进而处理词与词之间的关系了。采用的方法一般是一个三层的神经网络结构（当然也可以多层），分为输入层，隐藏层和输出层(softmax层)。</p>
 <p>关于数据的输入和输出，一般分为CBOW(Continuous Bag-of-Words 与Skip-Gram两种模型。</p>
 <p>1）CBOW模型的训练输入是某一个特征词的上下文相关的词对应的词向量，而输出就是这特定的一个词的词向量。比如下面这段话，我们的上下文大小取值为4，特定的这个词是&quot;Learning&quot;，也就是我们需要的输出词向量,上下文对应的词有8个，前后各4个，这8个词是我们模型的输入。由于CBOW使用的是词袋模型，因此这8个词都是平等的，也就是不考虑他们和我们关注的词之间的距离大小，只要在我们上下文之内即可。</p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1568873991915.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1568873991915.png" alt="" loading="lazy"></figure>
 <p>这样我们这个CBOW的例子里，我们的输入是8个词向量，输出是所有词的softmax概率（训练的目标是期望训练样本特定词对应的softmax概率最大），对应的CBOW神经网络模型输入层有8个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某8个词对应的最可能的输出中心词时，我们可以通过一次DNN前向传播算法并通过softmax激活函数找到概率最大的词对应的神经元即可。</p>
 <p>Skip-Gram模型和CBOW的思路是反着来的，即输入是特定的一个词的词向量，而输出是特定词对应的上下文词向量。还是上面的例子，我们的上下文大小取值为4， 特定的这个词&quot;Learning&quot;是我们的输入，而这8个上下文词是我们的输出。</p>
 <p>这样我们这个Skip-Gram的例子里，我们的输入是特定词， 输出是softmax概率排前8的8个词，对应的Skip-Gram神经网络模型输入层有1个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某1个词对应的最可能的8个上下文词时，我们可以通过一次DNN前向传播算法得到概率大小排前8的softmax概率对应的神经元所对应的词即可。</p>
@@ -123,45 +123,45 @@
 <p><a href="https://www.cnblogs.com/pinard/p/7160330.html">霍夫曼树</a></p>
 <p>那么霍夫曼树有什么好处呢？一般得到霍夫曼树后我们会对叶子节点进行霍夫曼编码，由于权重高的叶子节点越靠近根节点，而权重低的叶子节点会远离根节点，这样我们的高权重节点编码值较短，而低权重值编码值较长。这保证的树的带权路径最短</p>
 <p><strong>4.基于Hierarchical Softmax</strong></p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1568876484270.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1568876484270.png" alt="" loading="lazy"></figure>
 <p>对于CBOW 和Skip-gram两个模型，word2vec给出了两个框架，分别基于Hierarchical Softmax 和Negative Sampling</p>
 <p>本节介绍基于Hierarchical Softmax的CBOW 和Skip-gram的模型</p>
-<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1568944301012.png" alt=""></figure>
-<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1568944411497.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1568944301012.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1568944411497.png" alt="" loading="lazy"></figure>
 <p>CBOW 模型的优化目标函数：</p>
-<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1568876979618.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1568876979618.png" alt="" loading="lazy"></figure>
 <p>Skip-gram模型的优化的目标函数：</p>
-<figure data-type="image" tabindex="8"><img src="https://Sunxiaonan0672.github.io/post-images/1568877047258.png" alt=""></figure>
+<figure data-type="image" tabindex="8"><img src="https://Sunxiaonan0672.github.io/post-images/1568877047258.png" alt="" loading="lazy"></figure>
 <p>4.1 CBOW 模型</p>
 <p>4.1.1 网络结构</p>
-<figure data-type="image" tabindex="9"><img src="https://Sunxiaonan0672.github.io/post-images/1568902240357.png" alt=""></figure>
-<figure data-type="image" tabindex="10"><img src="https://Sunxiaonan0672.github.io/post-images/1568902461847.png" alt=""></figure>
-<figure data-type="image" tabindex="11"><img src="https://Sunxiaonan0672.github.io/post-images/1568902539402.png" alt=""></figure>
+<figure data-type="image" tabindex="9"><img src="https://Sunxiaonan0672.github.io/post-images/1568902240357.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://Sunxiaonan0672.github.io/post-images/1568902461847.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://Sunxiaonan0672.github.io/post-images/1568902539402.png" alt="" loading="lazy"></figure>
 <p>4.1.2 梯度计算</p>
-<figure data-type="image" tabindex="12"><img src="https://Sunxiaonan0672.github.io/post-images/1568902867228.png" alt=""></figure>
-<figure data-type="image" tabindex="13"><img src="https://Sunxiaonan0672.github.io/post-images/1568902913104.png" alt=""></figure>
-<figure data-type="image" tabindex="14"><img src="https://Sunxiaonan0672.github.io/post-images/1568903021858.png" alt=""></figure>
+<figure data-type="image" tabindex="12"><img src="https://Sunxiaonan0672.github.io/post-images/1568902867228.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://Sunxiaonan0672.github.io/post-images/1568902913104.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="https://Sunxiaonan0672.github.io/post-images/1568903021858.png" alt="" loading="lazy"></figure>
 <p>被分为正类的概率</p>
-<figure data-type="image" tabindex="15"><img src="https://Sunxiaonan0672.github.io/post-images/1568903093841.png" alt=""></figure>
+<figure data-type="image" tabindex="15"><img src="https://Sunxiaonan0672.github.io/post-images/1568903093841.png" alt="" loading="lazy"></figure>
 <p>被分为负类的概率</p>
-<figure data-type="image" tabindex="16"><img src="https://Sunxiaonan0672.github.io/post-images/1568903159349.png" alt=""></figure>
-<figure data-type="image" tabindex="17"><img src="https://Sunxiaonan0672.github.io/post-images/1568903263049.png" alt=""></figure>
-<figure data-type="image" tabindex="18"><img src="https://Sunxiaonan0672.github.io/post-images/1568903328172.png" alt=""></figure>
-<figure data-type="image" tabindex="19"><img src="https://Sunxiaonan0672.github.io/post-images/1568903398727.png" alt=""></figure>
-<figure data-type="image" tabindex="20"><img src="https://Sunxiaonan0672.github.io/post-images/1568903457598.png" alt=""></figure>
-<figure data-type="image" tabindex="21"><img src="https://Sunxiaonan0672.github.io/post-images/1568903515838.png" alt=""></figure>
-<figure data-type="image" tabindex="22"><img src="https://Sunxiaonan0672.github.io/post-images/1568903611813.png" alt=""></figure>
+<figure data-type="image" tabindex="16"><img src="https://Sunxiaonan0672.github.io/post-images/1568903159349.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="17"><img src="https://Sunxiaonan0672.github.io/post-images/1568903263049.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="18"><img src="https://Sunxiaonan0672.github.io/post-images/1568903328172.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="19"><img src="https://Sunxiaonan0672.github.io/post-images/1568903398727.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="20"><img src="https://Sunxiaonan0672.github.io/post-images/1568903457598.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://Sunxiaonan0672.github.io/post-images/1568903515838.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="https://Sunxiaonan0672.github.io/post-images/1568903611813.png" alt="" loading="lazy"></figure>
 <p>4.2 skip-gram模型</p>
 <p>4.2.1 网络结构</p>
-<figure data-type="image" tabindex="23"><img src="https://Sunxiaonan0672.github.io/post-images/1568903707010.png" alt=""></figure>
-<figure data-type="image" tabindex="24"><img src="https://Sunxiaonan0672.github.io/post-images/1568903743785.png" alt=""></figure>
-<figure data-type="image" tabindex="25"><img src="https://Sunxiaonan0672.github.io/post-images/1568903781886.png" alt=""></figure>
+<figure data-type="image" tabindex="23"><img src="https://Sunxiaonan0672.github.io/post-images/1568903707010.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://Sunxiaonan0672.github.io/post-images/1568903743785.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://Sunxiaonan0672.github.io/post-images/1568903781886.png" alt="" loading="lazy"></figure>
 <p>4.2.2 梯度计算</p>
-<figure data-type="image" tabindex="26"><img src="https://Sunxiaonan0672.github.io/post-images/1568904427956.png" alt=""></figure>
-<figure data-type="image" tabindex="27"><img src="https://Sunxiaonan0672.github.io/post-images/1568904484323.png" alt=""></figure>
-<figure data-type="image" tabindex="28"><img src="https://Sunxiaonan0672.github.io/post-images/1568904535801.png" alt=""></figure>
-<figure data-type="image" tabindex="29"><img src="https://Sunxiaonan0672.github.io/post-images/1568904572677.png" alt=""></figure>
-<figure data-type="image" tabindex="30"><img src="https://Sunxiaonan0672.github.io/post-images/1568904617117.png" alt=""></figure>
+<figure data-type="image" tabindex="26"><img src="https://Sunxiaonan0672.github.io/post-images/1568904427956.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="27"><img src="https://Sunxiaonan0672.github.io/post-images/1568904484323.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="28"><img src="https://Sunxiaonan0672.github.io/post-images/1568904535801.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="29"><img src="https://Sunxiaonan0672.github.io/post-images/1568904572677.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="30"><img src="https://Sunxiaonan0672.github.io/post-images/1568904617117.png" alt="" loading="lazy"></figure>
 <p>4.3 基于Negative Sampling 的模型</p>
 <p>Negative Sampling  是Tomas Mikolov 等人在2013年在“Distributed Representation of words and Phrases and their Compositionality”一文中提出，主要目的是提高训练速度并改善所得词向量的质量，与Hierarchical Softmax 相比，不再使用哈夫曼树，而是利用随机的负采样技术。</p>
 <p>5 小编寄语</p>
@@ -179,7 +179,7 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">
+              <a href="https://Sunxiaonan0672.github.io/post/paperrobot/">
                 <h3 class="post-title">
                   PaperRobot
                 </h3>
@@ -200,7 +200,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1575009504770" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -225,62 +225,76 @@
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">ELMO-Deep contextualized word representations</a>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">word2vec- Hierarchical Softmax</a>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">PaperRobot</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
             </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -294,15 +308,15 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge secondary">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge warning">
           Gridea
         </a>
       

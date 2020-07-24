@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1575009504770">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-04-28
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge ">
                   深度学习
                 </a>
               
@@ -101,9 +101,9 @@
 <p>在循环神经网络（RNN）中存的一个问题便是<em>长期依赖文同</em></p>
 <!-- more -->
 <p>根据上一章节中介绍的BPTT算法，其中第t时刻损失函数对第k时刻隐藏层的净输入z_k的导数如下：</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1556439290762.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1556439290762.png" alt="" loading="lazy"></figure>
 <p>将以上公式展开为：</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1556439446414.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1556439446414.png" alt="" loading="lazy"></figure>
 <p>以上展开式，我们可以发现～</p>
 <p>梯度爆炸问题：如果γ &gt; 1，当t−k → ∞时，γ(t−k) → ∞，会造成系统不稳定,则称作梯度爆炸<br>
 梯度消失问题：如果γ &lt; 1，当t−k → ∞时，γ(t−k) → 0， 会出现和深度前馈神经网络类似的梯度消失问题</p>
@@ -111,9 +111,9 @@
 <ol>
 <li>logistic 函数（sigmoid 函数）</li>
 </ol>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1556440773011.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1556440773011.png" alt="" loading="lazy"></figure>
 <p>2.tanh 函数</p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1556440926561.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1556440926561.jpg" alt="" loading="lazy"></figure>
 <p>从上图可以发现 sigmoid 函数的值域为（0，0.25]，tanh的值域也小于1，则如果时间间隔 t-k 过大，，δ_(t,k) 会趋向于 0，因此经常会出现梯度消失问题。</p>
 <p>因此，理论上简单的循环神经网络可以长时间间隔状态之间的依赖关系，但是由于梯度爆炸或者消失问题，实际上只能学习到短期的依赖关系。</p>
 <p>如果 t 时刻的输出 yt 依赖于 t − k 时刻的输入 x_(t−k) ，当间隔 k 比较大时，简单神经网络很难建模这种长距离的依赖关系，称为长期依赖问题(Long-Term Dependencies Problem)。</p>
@@ -141,7 +141,7 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">
+              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习/">
                 <h3 class="post-title">
                   循环神经网络-RNN之参数学习
                 </h3>
@@ -162,7 +162,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1575009504770" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -187,62 +187,76 @@
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">ELMO-Deep contextualized word representations</a>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">word2vec- Hierarchical Softmax</a>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">PaperRobot</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
             </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -256,15 +270,15 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge secondary">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge warning">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge secondary">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge warning">
           Gridea
         </a>
       

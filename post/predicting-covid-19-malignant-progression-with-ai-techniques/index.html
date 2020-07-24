@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>NLP介绍 | SunxiaonanBlog</title>
+<title>Predicting COVID-19 malignant progression with AI techniques | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,33 +86,31 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>NLP介绍</h1>
+            <h1>Predicting COVID-19 malignant progression with AI techniques</h1>
             <p class="article-meta">
-              2019-11-26
-              
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
-                  深度学习
-                </a>
+              2020-04-24
               
             </p>
             
             <div class="post-content">
-              <p><strong>1.什么是自然语言处理（NLP）</strong><br>
-自然语言 约等于 人类语言<br>
-而区别于人工语言<br>
-自然语言处理包括语音识别，自然语言理解，自然语言生成，人机交互以及涉及到的中间阶段<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574739216239.png" alt="" loading="lazy"></p>
-<p><strong>2.NLP的发展</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747428035.png" alt="" loading="lazy"></p>
-<p><strong>3.NLP分类</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747480593.png" alt="" loading="lazy"><br>
-3.1 典型的任务<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747677942.png" alt="" loading="lazy"></p>
-<p><strong>4.NLP的技术路线</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747802576.png" alt="" loading="lazy"></p>
-<p><strong>5.引用</strong><br>
-1.面向自然语言处理的深度学习基础   邱锡鹏<br>
-2.nlp学习之路-https://zhuanlan.zhihu.com/p/56802149</p>
+              <!-- more -->这篇文章来自华中科技大学电子信息学院与华中科技大学同济医学院附属同济医院合作一篇通过LSTM预测COVID-19轻症患者病情恶化的文章。
+<p><strong>背景</strong><br>
+COVID-19 大流行的背景下，医疗资源有限的情况下，重症/危重患者需优先治疗。有些患者很快从轻症患者转为重症/危重，所以这篇文章的目的借助AI技术识别轻症患者恶化进展。<br>
+<strong>数据构建</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1587700556233.png" alt="" loading="lazy"></figure>
+<p>数据主要包括患者入院时的临床和实验室检查数据，以及连续的胸部CT图像。<br>
+患者每一份数据分为静态数据（入院时临床特征以及实验室检查，共75个临床静态数据）与动态数据（从入院---&gt;恶化期间不同时间段的胸部CT图像特征）<br>
+影像学特征<br>
+1.这篇文章评估影像学特征包括：<br>
+1）毛玻璃样阴影 2）实质 3）空气支气管造影 4）paving stone sign 5）纤维化 6）结节 7） halo sign</p>
+<p>2.选择7份影像，原始定量胸部CT数据包括12种感染分布特征、8种感染征象类型特征、胸膈厚度、CT病程<br>
+肺部医学上分为18个节段，每个检查点的感染征象特征形成一个矩阵，该矩阵由感染分布特征和征象类型特征组成该矩阵由感染分布特征和征象类型特征组成，被展平成一个向量，然后与原始胸部CT定量数据连接。，被展平成一个向量，然后与原始胸部CT定量数据连接。<br>
+Each CT data at different checkpoint consists of a 3 × 6 matrix and a 22-dimensional vector，In order to merge these two parts, we directly flattened the matrix into an 18-dimensional vector and concatenated it with the 22-dimensional vector to form a 40-dimensional CT feature vector.</p>
+<p>3.为了将静态数据和动态数据相结合作为长短期存储器（LSTM）的输入，采用多层感知器（MLP）对静态数据进行处理，得到一个40维特征向量，作为LSTM第一时间戳的输入数据，然后是其他7个CT特征向量。</p>
+<p><strong>预测模型</strong><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1587715427810.png" alt="" loading="lazy"></p>
+<p><strong>结果</strong><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1587715685233.png" alt="" loading="lazy"></p>
 
             </div>
           </article>
@@ -123,9 +121,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">
                 <h3 class="post-title">
-                  word2vec- Hierarchical Softmax
+                  规则引擎
                 </h3>
               </a>
             </div>
@@ -252,11 +250,11 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge warning">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge success">
           paper
         </a>
       

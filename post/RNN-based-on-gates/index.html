@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1575009504770">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-05-05
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge warning">
                   深度学习
                 </a>
               
@@ -103,17 +103,17 @@
 <h2 id="1-lstm">1.  LSTM</h2>
 <p>1 . LSTM  简介</p>
 <p>LSTM 是循环神经网络的一个变体，可以有效的解决简单的梯度消失或消失问题。</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557049727798.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557049727798.png" alt="" loading="lazy"></figure>
 <p>公式(1)                                  h_t = h_(t−1) + g(x_t, h_(t−1); θ)</p>
 <p>在公式(1)的基础上，LSTM 网络主要更改的为：</p>
 <p><strong>1. 新的内部状态(internal states)</strong> c_t专门进行线性的循环信息传递，同时(非线性)输出信息给隐藏层的外部状态h_t。</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1557043623136.png" alt=""></figure>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1557044000039.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1557043623136.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1557044000039.png" alt="" loading="lazy"></figure>
 <p>其中 f_t，i_t 和 o_t 为三个门(gate)来控制信息传递的路径;⊙ 为向量元素乘积; c_(t−1) 为上一时刻的记忆单元;c ̃t是通过非线性函数得到候选状态。</p>
 <p>在每个时刻 t，LSTM 网络的内部状态 c_t 记录了到当前时刻为止的历史信息。</p>
 <p><strong>2. 机制门</strong><br>
 LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门”是一种“软门”，取值{0,1}之间，表示一定比例运行信息进入。</p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1557045809930.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1557045809930.png" alt="" loading="lazy"></figure>
 <p>其中 σ(·) 为 logistic 函数，其输出区间为 (0, 1)，x_t 为当前时刻的输入，h_(t−1) 为 上一时刻的外部状态</p>
 <p>其中</p>
 <ol>
@@ -128,7 +128,7 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
 </li>
 </ol>
 <p><strong>LSTM 计算过程</strong></p>
-<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1557046704003.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1557046704003.png" alt="" loading="lazy"></figure>
 <p>LSTM循环单元结构</p>
 <p>由上图所示</p>
 <ol>
@@ -164,7 +164,7 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">
+              <a href="https://Sunxiaonan0672.github.io/post/Methods/">
                 <h3 class="post-title">
                   解决方法-梯度爆炸或梯度消失
                 </h3>
@@ -185,7 +185,7 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1575009504770" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -210,62 +210,76 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">ELMO-Deep contextualized word representations</a>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">word2vec- Hierarchical Softmax</a>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">PaperRobot</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
             </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -279,15 +293,15 @@ LSTM 引入“门机制”来控制信息传递路径。LSTM网络中的“门�
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge warning">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge warning">
           Gridea
         </a>
       

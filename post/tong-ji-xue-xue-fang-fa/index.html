@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>统计学学方法 | SunxiaonanBlog</title>
+<meta name="description" content="经验是智慧之父，记忆是智慧之母">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://Sunxiaonan0672.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://Sunxiaonan0672.github.io">SunxiaonanBlog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>统计学学方法</h1>
+            <p class="article-meta">
+              2020-05-25
+              
+            </p>
+            
+            <div class="post-content">
+              <p><strong>概念</strong><br>
+统计学习是关于计算机基于<strong>数据构建概率统计模型</strong>并运用模型对<strong>数据进行预测与分析</strong>的一门科学。统计学习也称为统计机器学习。</p>
+<p><strong>特点</strong></p>
+<ol>
+<li>
+<p>统计学习以计算机及网络为平台，是建立在计算机与网络之上</p>
+</li>
+<li>
+<p>统计学习以数据为研究对象</p>
+<p>提取数据的特征，抽象出数据的模型，发现数据中的知识，又回到对数据的分析与预测中<br>
+数据的多样性，包括  各种数字、文字、图像、视频、音频数据以及它们的组合</p>
+</li>
+<li>
+<p>统计学习的目的是对数据进行预测与分析</p>
+<p>对数据的越策可以使计算机更加智能化，对数据的分析可以让人们获取新的知识，给人带来新的发现</p>
+</li>
+<li>
+<p>统计学习以方法为中心，统计学习方法构建模型并运用模型进行预测与分析</p>
+<p>统计学习包括 监督学习、非监督学习、半监督学习、和强化学习等</p>
+<p>得到一个有限的训练数据集<br>
+确定包含所有可能的模型假设空间，即学习模型集合<br>
+确定模型选择准则，即学习的策略<br>
+实现求解最优模型的算法，即学习的算法<br>
+通过学习方法选择最优模型<br>
+利用学习的最优模型对新数据进行预测或分析</p>
+</li>
+<li>
+<p>统计学习是概率论、统计学、信息论、计算理论、最优化理论及科学等多个领域的交叉学科</p>
+</li>
+</ol>
+<p><strong>统计学习三要素</strong></p>
+<p>方法 = 模型 + 策略 +算法</p>
+<p><strong>1.模型</strong></p>
+<p>统计学习首先考虑的问题便是学习什么样的模型。在监督学习过程中，模型就是所要学习的条件概率分布或决策函数。模型的假设空间（hypothesis space）包含所有可能的条件概率分布或者决策函数。</p>
+<p><strong>2.策略</strong></p>
+<p>按照什么样的准则学习或者先泽最优模型。</p>
+<p>损失函数 -- 度量模型一次预测的好坏</p>
+<p>风险函数 -- 度量平均意义下模型预测的好坏</p>
+<ol>
+<li>
+<p>损失函数（loss function）<br>
+监督学习问题是假设空间F 中选取模型f 作为决策函数，对于给定的输入X， 由f(X) 给出相应的输出Y，这个输出的预测值f(X)与真实值一致也可能不一致，用一个损失函数 或代价函数（cost function）来度量预测错误的程度。<br>
+损失函数是f(x)与Y的非负实值函数，记L(Y,f(X))<br>
+统计学习常用的损失函数<br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1591242768261.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>风险函数---<strong>学习的目的就是选择期望风险最小的模型</strong><br>
+损失函数值越小，模型就越好。由于模型的输入、输出（X,Y）是随机变量，遵循联合概率分布P(X，Y), 所以损失函数的期望是<br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1591250228118.png" alt="" loading="lazy"></p>
+<p>这是理论上模型f(x)关于联合分布P(X,Y)的平均意义下的损失，称为风险函数(risk function)或期望损失(expected loss)</p>
+</li>
+<li>
+<p>结构风险<br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1591251509377.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>经验风险最小化与结构风险最小化</p>
+<p>经验风险最小化的策略认为，经验风险最小的模型就是最优的模型。</p>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1591252347934.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
+<p>当样本量足够大，经验风险最小化能保证有很好的学习效果。</p>
+<p>当样本容量小时，经验风险最小化学习会产生<strong>过拟合</strong>现象</p>
+<p>结构风险最小化---- 防止过拟合而提出来的策略。</p>
+<p>结构风险在经验风险上加上表示模型复杂度的正则花项 或惩罚项，在假设空间、损失函数以及训练数据集确定的情况下，结构风险为</p>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1591252741119.png" alt="" loading="lazy"></figure>
+<p>其中J(f)为模型的复杂度，是定义在假设空间F上的泛函。模型f越复杂，复杂度J(f) 就越大，反之，模型f 越简单，复杂读J(f)就越小。即复杂度表示了对复杂模型的惩罚，系数 大于0， 用以权衡经验风险和模型复杂度。结构风险小需要经验风险与模型复杂度同时小。</p>
+<p>结构风险最小化的策略认为结构风险最小的模型是最优模型，求最优模型，就是求解最优化问题</p>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1591255561406.png" alt="" loading="lazy"></figure>
+<p><strong>3.算法</strong></p>
+<p>统计学习的算法称为求解最优化问题的算法。</p>
+<p>统计学习方法之间的不同，主要来自模型、策略、算法的不同。</p>
+<p><strong>生成模型与判别模型</strong></p>
+<p>监督学习的任务就是学习一个模型，应用这个一模型，对给定的输入预测相应的输出。模型的一般形式为</p>
+<p>决策函数Y= f(X) 或者条件概率分布 P（Y/X）</p>
+<p>监督学习方法可以分为生成方法和判别方法。所学的模型分别为生成模型和判别模型。<br>
+生成模型又数据学习联合概率分布P(X,Y), 然后求出条件概率分布P(Y/X)作为预测的模型，即生成模型<br>
+P(Y/X) = P(X,Y)/P(X), 模型表示了给定输入X产生输出Y的生成关系。典型的生成模型：朴素贝叶斯法和隐马尔可夫模型</p>
+<p>判别模型由数据直接学习决策函数f(X)或者条件概率分布P(Y/X)作为预测模型。判别方法关心的是对给定输入X，应该预测什么样的输出Y。典型的判别模型包括：K近邻法、感知机、决策树、逻辑斯蒂回归模型、最大熵模型、支持向量机、提升方法和条件随机场。</p>
+<p><strong>总结</strong><br>
+本文主要介绍统计学习基础概念，内容来源《统计学习方法》。</p>
+<p>（1）<strong>通过经验风险最小化推导极大似然估计。证明模型是条件概率分布，当损失函数是对数损失函数，经验风险最小化等价于极大似然估计</strong></p>
+<p>证明如下：</p>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1591263040431.jpeg" alt="" loading="lazy"></figure>
+<p>（2）<strong>说明伯努利模型的极大似然估计以及贝叶斯估计中的传统学习方法三要素，伯努利模型是定义在取值为0与1的随机变量上的概率分布。假设观测到伯努利模型n次独立的数据生成结果，其中k次的结果为1，这时可以用极大似然估计或贝叶斯估计来估计结果为1的概率</strong></p>
+<p>统计学分为两派：经典统计学派和贝叶斯统计学派。两者的不同主要是，经典统计学派认为模型已定，参数未知，参数是固定的，只是还不知道；贝叶斯统计学派是通过观察到的现象对概率分布中的主观认定不断进行修正。</p>
+<p>极大似然估计与贝叶斯估计的模型都是伯努利模型，极大似然估计用的是经典统计学派的策略，贝叶斯估计用的是贝叶斯统计学派的策略；为了得到使经验风险最小的参数值，使用的算法都是对经验风险求导，使导数为0.</p>
+<p>（https://blog.csdn.net/familyshizhouna/article/details/70160782）<br>
+（https://blog.csdn.net/weixin_41400276/article/details/85288216）</p>
+<p><strong>参考</strong></p>
+<ol>
+<li>统计学习方法 李航</li>
+</ol>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">
+                <h3 class="post-title">
+                  Predicting COVID-19 malignant progression with AI techniques
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
+    <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge secondary">
+          深度学习
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge success">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge ">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '8eff303ed9bcf9f4ab84',
+        clientSecret: 'f7db90d0f1726df30e9d7a67e8c9d39af5c2f9bc',
+        repo: 'Sunxiaonan0672.github.io',
+        owner: 'Sunxiaonan0672',
+        admin: ['Sunxiaonan0672'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

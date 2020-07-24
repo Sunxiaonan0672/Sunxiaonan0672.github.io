@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1575009504770">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -90,7 +90,7 @@
             <p class="article-meta">
               2019-04-25
               
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge warning">
+                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge ">
                   深度学习
                 </a>
               
@@ -106,13 +106,13 @@
 <pre><code>                               h_t = f(h_（t-1）,x_t)                   (1)
 </code></pre>
 <p>结构下图所示<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556183190436.png" alt=""><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1556183190436.png" alt="" loading="lazy"><br>
 图 1 循环神经网络</p>
 <p>假设在时刻t时，网络的输入为x_t，隐藏层状态(即隐藏层神经元活性值) 为 h_t 不仅和当前时刻的输入 x_t 相关，也和上一个时刻的隐藏层状态 h_t−1 相关。</p>
 <pre><code>			z_t =Uh_(t−1) +Wx_t +b			(2)
 			ht = f(zt)                              (3)
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557049592841.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1557049592841.png" alt="" loading="lazy"></figure>
 <h4 id="循环神经网络的应用模式">循环神经网络的应用模式</h4>
 <ol>
 <li>
@@ -120,7 +120,7 @@
 序列类别模式主要应用于序列数据分类问题，输入---&gt;序列，输出---&gt;类别<br>
 例如输入<em>文本单词序列</em>，输出<em>文本类别</em><br>
 网络结构如下所示<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556189860031.png" alt=""></p>
+<img src="https://Sunxiaonan0672.github.io/post-images/1556189860031.png" alt="" loading="lazy"></p>
 <p>图 2 序列到类别模式</p>
 <p>图2 （a）将h_T 看作整个序列的最终特征并输入给分类器 g(·) 进行分类，如公式4所示</p>
 <pre><code>yˆ = g(h_T )                     （4）
@@ -128,23 +128,23 @@
 </li>
 </ol>
 <p>图2 （b）对整个序列的所有 状态进行平均，并用这个平均状态来作为整个序列的表示，公式如下图所示</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1556191189374.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1556191189374.png" alt="" loading="lazy"></figure>
 <ol start="2">
 <li>同步的序列到序列模式</li>
 </ol>
 <p>同步的序列到序列模式主要用于序列标注(Sequence Labeling)任务，即每 一时刻都有输入和输出，输入序列和输出序列的长度相同，<em>词性标注</em>就是典型的同步序列到序列模式。<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556191431221.png" alt=""></p>
+<img src="https://Sunxiaonan0672.github.io/post-images/1556191431221.png" alt="" loading="lazy"></p>
 <p>图3 同步序列模式</p>
 <ol start="3">
 <li>异步的序列到序列模式<br>
 异步的序列到序列模式也称为编码器-解码器(Encoder-Decoder)模型，即输入序列和输出序列不需要有严格的对应关系，也不需要保持相同的长度。主要应用于“机器翻译”。输入为一个长度为 T 的序列 x_1:T = (x_1,··· ,x_T)，输出为长度为M的序列y_1:M = (y_1,··· ,y_M)。<br>
 利用先<em>编码</em>后<em>解码</em>的模式，先将x输入到一个循环神经网络（编码器）中获得h_T，再使用另一个循环神经网络（解码器）得到输出序列y_1:M<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556191993257.png" alt=""></li>
+<img src="https://Sunxiaonan0672.github.io/post-images/1556191993257.png" alt="" loading="lazy"></li>
 </ol>
 <p>图 4 异步序列模式</p>
 <p>其中f1(·), f2(·)分别为用作编码器和解码器的循环神经网络，g(·)为分类器，yˆt为预测输出 yˆt 的向量表示，公式如下</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1556192403766.png" alt=""><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1556192412309.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1556192403766.png" alt="" loading="lazy"><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1556192412309.png" alt="" loading="lazy"></p>
 <h4 id="作者总结">作者总结</h4>
 <p>基于时间问题，第一部分简介终结与此，第二部分会介绍RNN的参数学习</p>
 <p>----------------------------来自一枚努力工作的IT🦐</p>
@@ -162,7 +162,7 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/hello-gridea">
+              <a href="https://Sunxiaonan0672.github.io/post/hello-gridea/">
                 <h3 class="post-title">
                   Hello Gridea
                 </h3>
@@ -183,7 +183,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1575009504770" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -208,62 +208,76 @@
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">ELMO-Deep contextualized word representations</a>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">word2vec- Hierarchical Softmax</a>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">PaperRobot</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
             </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -277,15 +291,15 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge secondary">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge success">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge secondary">
           Gridea
         </a>
       

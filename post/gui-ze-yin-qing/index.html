@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>NLP介绍 | SunxiaonanBlog</title>
+<title>规则引擎 | SunxiaonanBlog</title>
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,33 +86,43 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>NLP介绍</h1>
+            <h1>规则引擎</h1>
             <p class="article-meta">
-              2019-11-26
-              
-                <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
-                  深度学习
-                </a>
+              2020-01-10
               
             </p>
             
             <div class="post-content">
-              <p><strong>1.什么是自然语言处理（NLP）</strong><br>
-自然语言 约等于 人类语言<br>
-而区别于人工语言<br>
-自然语言处理包括语音识别，自然语言理解，自然语言生成，人机交互以及涉及到的中间阶段<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574739216239.png" alt="" loading="lazy"></p>
-<p><strong>2.NLP的发展</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747428035.png" alt="" loading="lazy"></p>
-<p><strong>3.NLP分类</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747480593.png" alt="" loading="lazy"><br>
-3.1 典型的任务<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747677942.png" alt="" loading="lazy"></p>
-<p><strong>4.NLP的技术路线</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747802576.png" alt="" loading="lazy"></p>
-<p><strong>5.引用</strong><br>
-1.面向自然语言处理的深度学习基础   邱锡鹏<br>
-2.nlp学习之路-https://zhuanlan.zhihu.com/p/56802149</p>
+              <p><strong>背景</strong></p>
+<p>规则引擎主要实现的功能是存储、分类和管理规则，执行规则、推断其它事实的应用程序。<br>
+在规则引擎发展的过程中，Rete算法（正向推理）和Prolog语言是两个重要的理论分支，多数规则引擎都是基于以上二者扩展而来的。Prolog语言基于谓词逻辑的理论。最基本的写法是定立物件与物件之间的关系，之后可以用询问目标的方式来查询各种物件之间的关系，进行匹配及回溯，找出所询问的答案。</p>
+<p><strong>基于python语言的规则引擎</strong></p>
+<p>1.pyDatalog</p>
+<pre><code>官网：https://sites.google.com/site/pydatalog/home
+    
+https://github.com/pcarbonn/pyDatalog 
+
+
+用于&quot;知识推理&quot;，它借鉴了Datalog这种声明式语言，可以很方便自然地表达一些逻辑命题和数学公式。
+pyDatalog还可以用接近于谓词逻辑的表示法进行一些推理【准确的说，是一阶谓词逻辑的子集，表达力稍弱一些但效率似乎更高。】
+</code></pre>
+<p>2.Pyke</p>
+<pre><code>官网：http://pyke.sourceforge.net/
+
+1）pyke 前身普遍说前身是prolog，支持正向推理和反向推理两种推理方式，可以针对不同问题选用不同方式定义规则
+2）可以在规则中嵌入Python代码段补充描述
+3）专用谓词较多
+4）然而正反向推理不能在同一个规则库中并存，不支持批量的事实导入
+</code></pre>
+<p>3.pyclips</p>
+<pre><code>官网：http://pyclips.sourceforge.net/manual/pyclips-overview.html
+
+1）在规则定义环节，支持声明函数。支持OO（面向对象）：包括类的定义，模板（类似C++中的template）的定义。针对未来复杂的规则描述可能适用
+2）然而只显式支持正向推理，以及不支持批量的事实或规则导入
+</code></pre>
+<p>4.Drools</p>
+<pre><code>一款基于java的规则引擎
+</code></pre>
 
             </div>
           </article>
@@ -123,9 +133,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">
                 <h3 class="post-title">
-                  word2vec- Hierarchical Softmax
+                  ELMO-Deep contextualized word representations
                 </h3>
               </a>
             </div>
@@ -252,7 +262,7 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge ">
           深度学习
         </a>
       
@@ -260,7 +270,7 @@
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge success">
           Gridea
         </a>
       

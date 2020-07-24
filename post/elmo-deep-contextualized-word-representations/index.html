@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1575009504770">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -102,26 +102,26 @@
 <p>1）Bidirectional language models</p>
 <p>给定N 个tokens 的序列 （t1,t2,..tN)</p>
 <p>a forward language model computes the probability of the sequence by modeling the probability of toten tk given the history(t1,t2,...tN)</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1574994688749.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1574994688749.png" alt="" loading="lazy"></figure>
 <p>A backward LM is similar to a forward LM, except it runs over the sequence in reverse, predict- ing the previous token given the future context:</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1574995054093.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1574995054093.png" alt="" loading="lazy"></figure>
 <p><strong>BiLM 是要计算前向和后项联合极大对数似然估计</strong></p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1574996278300.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1574996278300.png" alt="" loading="lazy"></figure>
 <p>2）ELMO<br>
 ELMO是一个BiLM中间层表示的任务特定组合<br>
 对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示</p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1574999566885.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1574999566885.png" alt="" loading="lazy"></figure>
 <p>对于不同特定任务，compute a task specific weighting of all biLM layers:</p>
-<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1574999745720.png" alt=""></figure>
-<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1574999795341.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1574999745720.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1574999795341.png" alt="" loading="lazy"></figure>
 <p><strong>3.Using biLMs for supervised NLP tasks</strong></p>
 <p>假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。<br>
 比如，现在的监督任务模型使用通常的 word embedding，x_emb作为输入，经过几层 RNN，每个词得到一个相应的输出 h_rnn,</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1575000122298.png" alt=""><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1575007116040.png" alt=""></p>
+<p><img src="https://Sunxiaonan0672.github.io/post-images/1575000122298.png" alt="" loading="lazy"><br>
+<img src="https://Sunxiaonan0672.github.io/post-images/1575007116040.png" alt="" loading="lazy"></p>
 <pre><code>                        [h_k,ELMO_k]
 </code></pre>
-<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1575007257783.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1575007257783.png" alt="" loading="lazy"></figure>
 <p>ELMO模型中适当的加入dropout或者将ELMO模型中加入regularize，会更好。</p>
 <p><strong>4.Pre-trained biLM architecture</strong></p>
 <p>本文使用的 biLM 中<br>
@@ -149,7 +149,7 @@ ELMO是一个BiLM中间层表示的任务特定组合<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">
                 <h3 class="post-title">
                   NLP介绍
                 </h3>
@@ -170,7 +170,7 @@ ELMO是一个BiLM中间层表示的任务特定组合<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1575009504770" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -195,62 +195,76 @@ ELMO是一个BiLM中间层表示的任务特定组合<br>
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations">ELMO-Deep contextualized word representations</a>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao">NLP介绍</a>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax">word2vec- Hierarchical Softmax</a>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/paperrobot">PaperRobot</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/recommendation">Recommendation</a>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-based-on-gates">基于门控的RNN</a>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/Methods">解决方法-梯度爆炸或梯度消失</a>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/chang-qi-yi-lai-wen-ti">长期依赖问题</a>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-参数学习">循环神经网络-RNN之参数学习</a>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
             </li>
           
         
           
             <li>
-              <a href="https://Sunxiaonan0672.github.io/post/RNN-Introduction">循环神经网络-RNN之简介</a>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
             </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -264,15 +278,15 @@ ELMO是一个BiLM中间层表示的任务特定组合<br>
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge warning">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge ">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea" class="badge secondary">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge success">
           Gridea
         </a>
       

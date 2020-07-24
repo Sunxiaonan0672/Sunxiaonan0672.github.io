@@ -1,22 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://Sunxiaonan0672.github.io</id>
-    <title>SunxiaonanBlog</title>
-    <updated>2020-07-24T01:13:01.297Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://Sunxiaonan0672.github.io"/>
-    <link rel="self" href="https://Sunxiaonan0672.github.io/atom.xml"/>
-    <subtitle>经验是智慧之父，记忆是智慧之母</subtitle>
-    <logo>https://Sunxiaonan0672.github.io/images/avatar.png</logo>
-    <icon>https://Sunxiaonan0672.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, SunxiaonanBlog</rights>
-    <entry>
-        <title type="html"><![CDATA[线性回归（Linear Regression）]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">
-        </link>
-        <updated>2020-07-20T09:16:48.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>1. 线性回归定义</strong></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>线性回归（Linear Regression） | SunxiaonanBlog</title>
+<meta name="description" content="经验是智慧之父，记忆是智慧之母">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://Sunxiaonan0672.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://Sunxiaonan0672.github.io">SunxiaonanBlog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>线性回归（Linear Regression）</h1>
+            <p class="article-meta">
+              2020-07-20
+              
+            </p>
+            
+            <div class="post-content">
+              <p><strong>1. 线性回归定义</strong></p>
 <p>回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系，特别是当输入变量的值发生变化时，输出变量的值也随之发生变化。回归模型正式表示从输入变量到输出变量之间映射的函数</p>
 <p><strong>2. 线性回归模型</strong><br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msub><mi>w</mi><mn>0</mn></msub><mo>+</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><msub><mi>w</mi><mn>3</mn></msub><msub><mi>x</mi><mn>3</mn></msub><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msub><mi>x</mi><mi>n</mi></msub><msub><mi>w</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">f(x) = w_0+w_1x_1+w_2x_2+w_3x_3+....+x_nw_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
@@ -68,388 +145,202 @@
 <figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1595505405794.jpeg" alt="" loading="lazy"></figure>
 <p><strong>总结</strong><br>
 本节主要讲述机器学习系列最基础的线性回归模型，由于时间紧张，增加笔记贴图，影响美观。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[药物分子-HTMD]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">
-        </link>
-        <updated>2020-07-07T09:42:50.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>
-<p>功能<br>
-HTMD 为用户提供了一个计算分子模拟发现的集成平台。</p>
-<p>功能包括：从分子结构操作到系统构建、分子对接、MD模拟、模拟管理、聚类、马尔可夫模型和自适用采样。</p>
-</li>
-<li>
-<p>链接地址<br>
-1）https://software.acellera.com/docs/latest/htmd/index.html</p>
-<p>2）http://gainstrong.net/works/hudong/2018-04-04/105.html</p>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[数据集]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/shu-ju-ji/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">
-        </link>
-        <updated>2020-06-15T01:33:33.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>
-<p>TOUGH-C1 data set</p>
-<p>TOUGH-C1 数据集由1553个核苷酸口袋(nucleotide pockets) 和596个血红素结合位点(heme- binding sites)组成</p>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[感知机]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/gan-zhi-ji/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">
-        </link>
-        <updated>2020-06-05T06:04:11.000Z</updated>
-        <content type="html"><![CDATA[<p>感知机 是由Rosenblatt 在1957年提出，是神经网络与支持向量机的基础</p>
-<ol>
-<li>
-<p>感知机模型</p>
-<p>定义：假设输入空间（特征空间）是 x属于R, 输出空间是y={+1,-1}. 输入x 属于X 表示实例的特征向量，对应于输入空间(特征空间)的点，输出y属于Y表示实例的类别。由输入空间到输出空间函数：</p>
-<p>f(x) = sign(wx +b)</p>
-<p>称为感知机，w 和 b 为感知机模型参数。</p>
-<p>感知机是一种线性分类模型，属于判别模型， 感知机模型的假设空间是定义在特征空间中的所有线性分类模型或者线性分类器，即函数集合{f/f(x) = wx+b}</p>
-<p>wx+b = 0<br>
-对应于特征空间R中的一个超平面S， 其中w是超平面的法向量，b是超平面的截距。</p>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[统计学学方法]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">
-        </link>
-        <updated>2020-05-25T09:55:34.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>概念</strong><br>
-统计学习是关于计算机基于<strong>数据构建概率统计模型</strong>并运用模型对<strong>数据进行预测与分析</strong>的一门科学。统计学习也称为统计机器学习。</p>
-<p><strong>特点</strong></p>
-<ol>
-<li>
-<p>统计学习以计算机及网络为平台，是建立在计算机与网络之上</p>
-</li>
-<li>
-<p>统计学习以数据为研究对象</p>
-<p>提取数据的特征，抽象出数据的模型，发现数据中的知识，又回到对数据的分析与预测中<br>
-数据的多样性，包括  各种数字、文字、图像、视频、音频数据以及它们的组合</p>
-</li>
-<li>
-<p>统计学习的目的是对数据进行预测与分析</p>
-<p>对数据的越策可以使计算机更加智能化，对数据的分析可以让人们获取新的知识，给人带来新的发现</p>
-</li>
-<li>
-<p>统计学习以方法为中心，统计学习方法构建模型并运用模型进行预测与分析</p>
-<p>统计学习包括 监督学习、非监督学习、半监督学习、和强化学习等</p>
-<p>得到一个有限的训练数据集<br>
-确定包含所有可能的模型假设空间，即学习模型集合<br>
-确定模型选择准则，即学习的策略<br>
-实现求解最优模型的算法，即学习的算法<br>
-通过学习方法选择最优模型<br>
-利用学习的最优模型对新数据进行预测或分析</p>
-</li>
-<li>
-<p>统计学习是概率论、统计学、信息论、计算理论、最优化理论及科学等多个领域的交叉学科</p>
-</li>
-</ol>
-<p><strong>统计学习三要素</strong></p>
-<p>方法 = 模型 + 策略 +算法</p>
-<p><strong>1.模型</strong></p>
-<p>统计学习首先考虑的问题便是学习什么样的模型。在监督学习过程中，模型就是所要学习的条件概率分布或决策函数。模型的假设空间（hypothesis space）包含所有可能的条件概率分布或者决策函数。</p>
-<p><strong>2.策略</strong></p>
-<p>按照什么样的准则学习或者先泽最优模型。</p>
-<p>损失函数 -- 度量模型一次预测的好坏</p>
-<p>风险函数 -- 度量平均意义下模型预测的好坏</p>
-<ol>
-<li>
-<p>损失函数（loss function）<br>
-监督学习问题是假设空间F 中选取模型f 作为决策函数，对于给定的输入X， 由f(X) 给出相应的输出Y，这个输出的预测值f(X)与真实值一致也可能不一致，用一个损失函数 或代价函数（cost function）来度量预测错误的程度。<br>
-损失函数是f(x)与Y的非负实值函数，记L(Y,f(X))<br>
-统计学习常用的损失函数<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1591242768261.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p>风险函数---<strong>学习的目的就是选择期望风险最小的模型</strong><br>
-损失函数值越小，模型就越好。由于模型的输入、输出（X,Y）是随机变量，遵循联合概率分布P(X，Y), 所以损失函数的期望是<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1591250228118.png" alt="" loading="lazy"></p>
-<p>这是理论上模型f(x)关于联合分布P(X,Y)的平均意义下的损失，称为风险函数(risk function)或期望损失(expected loss)</p>
-</li>
-<li>
-<p>结构风险<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1591251509377.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p>经验风险最小化与结构风险最小化</p>
-<p>经验风险最小化的策略认为，经验风险最小的模型就是最优的模型。</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1591252347934.png" alt="" loading="lazy"></figure>
-</li>
-</ol>
-<p>当样本量足够大，经验风险最小化能保证有很好的学习效果。</p>
-<p>当样本容量小时，经验风险最小化学习会产生<strong>过拟合</strong>现象</p>
-<p>结构风险最小化---- 防止过拟合而提出来的策略。</p>
-<p>结构风险在经验风险上加上表示模型复杂度的正则花项 或惩罚项，在假设空间、损失函数以及训练数据集确定的情况下，结构风险为</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1591252741119.png" alt="" loading="lazy"></figure>
-<p>其中J(f)为模型的复杂度，是定义在假设空间F上的泛函。模型f越复杂，复杂度J(f) 就越大，反之，模型f 越简单，复杂读J(f)就越小。即复杂度表示了对复杂模型的惩罚，系数 大于0， 用以权衡经验风险和模型复杂度。结构风险小需要经验风险与模型复杂度同时小。</p>
-<p>结构风险最小化的策略认为结构风险最小的模型是最优模型，求最优模型，就是求解最优化问题</p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1591255561406.png" alt="" loading="lazy"></figure>
-<p><strong>3.算法</strong></p>
-<p>统计学习的算法称为求解最优化问题的算法。</p>
-<p>统计学习方法之间的不同，主要来自模型、策略、算法的不同。</p>
-<p><strong>生成模型与判别模型</strong></p>
-<p>监督学习的任务就是学习一个模型，应用这个一模型，对给定的输入预测相应的输出。模型的一般形式为</p>
-<p>决策函数Y= f(X) 或者条件概率分布 P（Y/X）</p>
-<p>监督学习方法可以分为生成方法和判别方法。所学的模型分别为生成模型和判别模型。<br>
-生成模型又数据学习联合概率分布P(X,Y), 然后求出条件概率分布P(Y/X)作为预测的模型，即生成模型<br>
-P(Y/X) = P(X,Y)/P(X), 模型表示了给定输入X产生输出Y的生成关系。典型的生成模型：朴素贝叶斯法和隐马尔可夫模型</p>
-<p>判别模型由数据直接学习决策函数f(X)或者条件概率分布P(Y/X)作为预测模型。判别方法关心的是对给定输入X，应该预测什么样的输出Y。典型的判别模型包括：K近邻法、感知机、决策树、逻辑斯蒂回归模型、最大熵模型、支持向量机、提升方法和条件随机场。</p>
-<p><strong>总结</strong><br>
-本文主要介绍统计学习基础概念，内容来源《统计学习方法》。</p>
-<p>（1）<strong>通过经验风险最小化推导极大似然估计。证明模型是条件概率分布，当损失函数是对数损失函数，经验风险最小化等价于极大似然估计</strong></p>
-<p>证明如下：</p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1591263040431.jpeg" alt="" loading="lazy"></figure>
-<p>（2）<strong>说明伯努利模型的极大似然估计以及贝叶斯估计中的传统学习方法三要素，伯努利模型是定义在取值为0与1的随机变量上的概率分布。假设观测到伯努利模型n次独立的数据生成结果，其中k次的结果为1，这时可以用极大似然估计或贝叶斯估计来估计结果为1的概率</strong></p>
-<p>统计学分为两派：经典统计学派和贝叶斯统计学派。两者的不同主要是，经典统计学派认为模型已定，参数未知，参数是固定的，只是还不知道；贝叶斯统计学派是通过观察到的现象对概率分布中的主观认定不断进行修正。</p>
-<p>极大似然估计与贝叶斯估计的模型都是伯努利模型，极大似然估计用的是经典统计学派的策略，贝叶斯估计用的是贝叶斯统计学派的策略；为了得到使经验风险最小的参数值，使用的算法都是对经验风险求导，使导数为0.</p>
-<p>（https://blog.csdn.net/familyshizhouna/article/details/70160782）<br>
-（https://blog.csdn.net/weixin_41400276/article/details/85288216）</p>
-<p><strong>参考</strong></p>
-<ol>
-<li>统计学习方法 李航</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Predicting COVID-19 malignant progression with AI techniques]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">
-        </link>
-        <updated>2020-04-24T02:50:40.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->这篇文章来自华中科技大学电子信息学院与华中科技大学同济医学院附属同济医院合作一篇通过LSTM预测COVID-19轻症患者病情恶化的文章。
-<p><strong>背景</strong><br>
-COVID-19 大流行的背景下，医疗资源有限的情况下，重症/危重患者需优先治疗。有些患者很快从轻症患者转为重症/危重，所以这篇文章的目的借助AI技术识别轻症患者恶化进展。<br>
-<strong>数据构建</strong></p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1587700556233.png" alt="" loading="lazy"></figure>
-<p>数据主要包括患者入院时的临床和实验室检查数据，以及连续的胸部CT图像。<br>
-患者每一份数据分为静态数据（入院时临床特征以及实验室检查，共75个临床静态数据）与动态数据（从入院---&gt;恶化期间不同时间段的胸部CT图像特征）<br>
-影像学特征<br>
-1.这篇文章评估影像学特征包括：<br>
-1）毛玻璃样阴影 2）实质 3）空气支气管造影 4）paving stone sign 5）纤维化 6）结节 7） halo sign</p>
-<p>2.选择7份影像，原始定量胸部CT数据包括12种感染分布特征、8种感染征象类型特征、胸膈厚度、CT病程<br>
-肺部医学上分为18个节段，每个检查点的感染征象特征形成一个矩阵，该矩阵由感染分布特征和征象类型特征组成该矩阵由感染分布特征和征象类型特征组成，被展平成一个向量，然后与原始胸部CT定量数据连接。，被展平成一个向量，然后与原始胸部CT定量数据连接。<br>
-Each CT data at different checkpoint consists of a 3 × 6 matrix and a 22-dimensional vector，In order to merge these two parts, we directly flattened the matrix into an 18-dimensional vector and concatenated it with the 22-dimensional vector to form a 40-dimensional CT feature vector.</p>
-<p>3.为了将静态数据和动态数据相结合作为长短期存储器（LSTM）的输入，采用多层感知器（MLP）对静态数据进行处理，得到一个40维特征向量，作为LSTM第一时间戳的输入数据，然后是其他7个CT特征向量。</p>
-<p><strong>预测模型</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1587715427810.png" alt="" loading="lazy"></p>
-<p><strong>结果</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1587715685233.png" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[规则引擎]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">
-        </link>
-        <updated>2020-01-10T01:24:27.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>背景</strong></p>
-<p>规则引擎主要实现的功能是存储、分类和管理规则，执行规则、推断其它事实的应用程序。<br>
-在规则引擎发展的过程中，Rete算法（正向推理）和Prolog语言是两个重要的理论分支，多数规则引擎都是基于以上二者扩展而来的。Prolog语言基于谓词逻辑的理论。最基本的写法是定立物件与物件之间的关系，之后可以用询问目标的方式来查询各种物件之间的关系，进行匹配及回溯，找出所询问的答案。</p>
-<p><strong>基于python语言的规则引擎</strong></p>
-<p>1.pyDatalog</p>
-<pre><code>官网：https://sites.google.com/site/pydatalog/home
-    
-https://github.com/pcarbonn/pyDatalog 
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">
+                <h3 class="post-title">
+                  药物分子-HTMD
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
+    <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/xian-xing-hui-gui-linear-regression/">线性回归（Linear Regression）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/yao-wu-fen-zi-htmd/">药物分子-HTMD</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/shu-ju-ji/">数据集</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/gan-zhi-ji/">感知机</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/tong-ji-xue-xue-fang-fa/">统计学学方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/predicting-covid-19-malignant-progression-with-ai-techniques/">Predicting COVID-19 malignant progression with AI techniques</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/gui-ze-yin-qing/">规则引擎</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">ELMO-Deep contextualized word representations</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">NLP介绍</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge ">
+          深度学习
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge ">
+          paper
+        </a>
+      
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge success">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  </div>
+</div>
 
 
-用于&quot;知识推理&quot;，它借鉴了Datalog这种声明式语言，可以很方便自然地表达一些逻辑命题和数学公式。
-pyDatalog还可以用接近于谓词逻辑的表示法进行一些推理【准确的说，是一阶谓词逻辑的子集，表达力稍弱一些但效率似乎更高。】
-</code></pre>
-<p>2.Pyke</p>
-<pre><code>官网：http://pyke.sourceforge.net/
+    </div>
 
-1）pyke 前身普遍说前身是prolog，支持正向推理和反向推理两种推理方式，可以针对不同问题选用不同方式定义规则
-2）可以在规则中嵌入Python代码段补充描述
-3）专用谓词较多
-4）然而正反向推理不能在同一个规则库中并存，不支持批量的事实导入
-</code></pre>
-<p>3.pyclips</p>
-<pre><code>官网：http://pyclips.sourceforge.net/manual/pyclips-overview.html
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-1）在规则定义环节，支持声明函数。支持OO（面向对象）：包括类的定义，模板（类似C++中的template）的定义。针对未来复杂的规则描述可能适用
-2）然而只显式支持正向推理，以及不支持批量的事实或规则导入
-</code></pre>
-<p>4.Drools</p>
-<pre><code>一款基于java的规则引擎
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ELMO-Deep contextualized word representations]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/elmo-deep-contextualized-word-representations/">
-        </link>
-        <updated>2019-11-28T10:21:20.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>1.概述</strong><br>
-文章提出了一种word representations（ELMO）</p>
-<p>好的词向量模型不仅能够表达词的复杂特性，比如语义和语法的特性，也要能够刻画这些特性在不同语言上下文中的变化</p>
-<p>传统的词向量模型当中，学到的向量表示更多的是一种上下文独立的表示。过去一般会使用 subword information 来增强词向量表示，或者是为每个word sense 学习一个向量表示。这篇文章中的方法既有使用Character CNN来捕获 subword information，也有学习到 multi sense information。</p>
-<p>文章中通过学习一个 deep bidirectional language model (biLM)，将词向量表示为 biLM 的内,部状态的函数（也不仅仅是简单的取最后一层的表示）。从而，学到的每个 word representation 不再仅仅是一个 word 的函数，而是整个 sentence 的函数。</p>
-<p><strong>2.模型结构</strong></p>
-<p>1）Bidirectional language models</p>
-<p>给定N 个tokens 的序列 （t1,t2,..tN)</p>
-<p>a forward language model computes the probability of the sequence by modeling the probability of toten tk given the history(t1,t2,...tN)</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1574994688749.png" alt="" loading="lazy"></figure>
-<p>A backward LM is similar to a forward LM, except it runs over the sequence in reverse, predict- ing the previous token given the future context:</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1574995054093.png" alt="" loading="lazy"></figure>
-<p><strong>BiLM 是要计算前向和后项联合极大对数似然估计</strong></p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1574996278300.png" alt="" loading="lazy"></figure>
-<p>2）ELMO<br>
-ELMO是一个BiLM中间层表示的任务特定组合<br>
-对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示</p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1574999566885.png" alt="" loading="lazy"></figure>
-<p>对于不同特定任务，compute a task specific weighting of all biLM layers:</p>
-<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1574999745720.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1574999795341.png" alt="" loading="lazy"></figure>
-<p><strong>3.Using biLMs for supervised NLP tasks</strong></p>
-<p>假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。<br>
-比如，现在的监督任务模型使用通常的 word embedding，x_emb作为输入，经过几层 RNN，每个词得到一个相应的输出 h_rnn,</p>
-<p><img src="https://Sunxiaonan0672.github.io/post-images/1575000122298.png" alt="" loading="lazy"><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1575007116040.png" alt="" loading="lazy"></p>
-<pre><code>                        [h_k,ELMO_k]
-</code></pre>
-<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1575007257783.png" alt="" loading="lazy"></figure>
-<p>ELMO模型中适当的加入dropout或者将ELMO模型中加入regularize，会更好。</p>
-<p><strong>4.Pre-trained biLM architecture</strong></p>
-<p>本文使用的 biLM 中<br>
-首先对每个 word 中的 character 做 convolution 得到 word 的表示，具体的使用的 conv 共有 2048 filters， 后面接两个highway layer，再做线性投射到 512 dim，后面接 2 层 lstm. 最后为每个 word 提供了 3 层的表示<br>
-而传统的 word embedding 的方式只提供了 1 层的表示。</p>
-<p>在 biLM 预训练完毕之后，就可以为特定的任务计算向量表示了。<br>
-文章中提到在有些 case 当中，用domain specific 的数据对 biLM 做 fine tuning 会带来 perplexity 的显著下降和下游任务性能的提升。</p>
-<p><strong>5.参考</strong></p>
-<p>1）<strong>ELMo: Deep contextualized word representations 阅读笔记</strong><br>
-（https://www.tvect.cn/archives/55）</p>
-<p>2）<strong>ELMo最好用词向量Deep Contextualized Word Representations</strong><br>
-（https://zhuanlan.zhihu.com/p/38254332）<br>
-3）<strong>word representations</strong><br>
-（https://note.youdao.com/ynoteshare1/index.html?id=528a1e74487d642ed5b46b4e83ca99e2&amp;type=note）</p>
-<p>6.作者寄语</p>
-<p>来自一直永不言弃的小🦐的努力⛽️</p>
-<p>​</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[NLP介绍]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/nlp-jie-shao/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/nlp-jie-shao/">
-        </link>
-        <updated>2019-11-26T03:01:19.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>1.什么是自然语言处理（NLP）</strong><br>
-自然语言 约等于 人类语言<br>
-而区别于人工语言<br>
-自然语言处理包括语音识别，自然语言理解，自然语言生成，人机交互以及涉及到的中间阶段<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574739216239.png" alt="" loading="lazy"></p>
-<p><strong>2.NLP的发展</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747428035.png" alt="" loading="lazy"></p>
-<p><strong>3.NLP分类</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747480593.png" alt="" loading="lazy"><br>
-3.1 典型的任务<br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747677942.png" alt="" loading="lazy"></p>
-<p><strong>4.NLP的技术路线</strong><br>
-<img src="https://Sunxiaonan0672.github.io/post-images/1574747802576.png" alt="" loading="lazy"></p>
-<p><strong>5.引用</strong><br>
-1.面向自然语言处理的深度学习基础   邱锡鹏<br>
-2.nlp学习之路-https://zhuanlan.zhihu.com/p/56802149</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[word2vec- Hierarchical Softmax]]></title>
-        <id>https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/</id>
-        <link href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">
-        </link>
-        <updated>2019-09-19T00:55:31.000Z</updated>
-        <content type="html"><![CDATA[<p>word2vec是google在2013年推出的一个NLP工具，它的特点是将所有的词向量化，这样词与词之间就可以定量的去度量他们之间的关系，挖掘词之间的联系。</p>
-<p><strong>1.词向量基础</strong></p>
-<p>1.1-of-N representation或者one hot representation<br>
-词向量表达在很久以前就出现了，最早词向量冗长，它使用是词向量维度大小 为整个词汇表的大小，对于每个具体的词汇表中的词，将对应的位置置为1。</p>
-<p>比如我们有下面的6个词组成的词汇表 [&quot;king&quot;,&quot;woman&quot;,&quot;queen&quot;,&quot;man&quot;,&quot;child&quot;,&quot;kid&quot;]，  词&quot;Queen&quot;的序号为3， 那么它的词向量就是(0,0,1,0,0,0)。同样的道理，词&quot;Woman&quot;的词向量就是(0,1,0,0,0,0)。</p>
-<figure data-type="image" tabindex="1"><img src="https://Sunxiaonan0672.github.io/post-images/1568864784466.png" alt="" loading="lazy"></figure>
-<p>虽然One hot representation表示词向量非常简单，但是存在最大的问题是由于词汇表一般都非常大，比如达到百万级别，这样每个词都用百万维的向量来表示简直是内存的灾难。而且只有对应词的位置是1，其余都是0</p>
-<ol start="2">
-<li>Distributed representation</li>
-</ol>
-<p>为了解决one-hot 问题，引入了Distributed representation，它的思路是通过训练，将每个词都映射到一个较短的词向量上来，所有的这些词向量就构成了向量空间，进而可以用普通的统计学的方法来研究词与词之间的关系。</p>
-<p>King这个词对应的词向量可能是(0.99,0.99,0.05,0.7)。当然在实际情况中，我们并不能对词向量的每个维度做一个很好的解释。</p>
-<figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1568871786990.png" alt="" loading="lazy"></figure>
-<p>只要得到了词汇表里所有词对应的词向量，那么我们就可以做很多有趣的事情了。不过，怎么训练得到合适的词向量呢？一个很常见的方法是使用神经网络语言模型。</p>
-<p><strong>2.CBOW与Skip-Gram用于神经网络语言模型</strong></p>
-<p>在word2vec出现之前，已经有用神经网络DNN来用训练词向量进而处理词与词之间的关系了。采用的方法一般是一个三层的神经网络结构（当然也可以多层），分为输入层，隐藏层和输出层(softmax层)。</p>
-<p>关于数据的输入和输出，一般分为CBOW(Continuous Bag-of-Words 与Skip-Gram两种模型。</p>
-<p>1）CBOW模型的训练输入是某一个特征词的上下文相关的词对应的词向量，而输出就是这特定的一个词的词向量。比如下面这段话，我们的上下文大小取值为4，特定的这个词是&quot;Learning&quot;，也就是我们需要的输出词向量,上下文对应的词有8个，前后各4个，这8个词是我们模型的输入。由于CBOW使用的是词袋模型，因此这8个词都是平等的，也就是不考虑他们和我们关注的词之间的距离大小，只要在我们上下文之内即可。</p>
-<figure data-type="image" tabindex="3"><img src="https://Sunxiaonan0672.github.io/post-images/1568873991915.png" alt="" loading="lazy"></figure>
-<p>这样我们这个CBOW的例子里，我们的输入是8个词向量，输出是所有词的softmax概率（训练的目标是期望训练样本特定词对应的softmax概率最大），对应的CBOW神经网络模型输入层有8个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某8个词对应的最可能的输出中心词时，我们可以通过一次DNN前向传播算法并通过softmax激活函数找到概率最大的词对应的神经元即可。</p>
-<p>Skip-Gram模型和CBOW的思路是反着来的，即输入是特定的一个词的词向量，而输出是特定词对应的上下文词向量。还是上面的例子，我们的上下文大小取值为4， 特定的这个词&quot;Learning&quot;是我们的输入，而这8个上下文词是我们的输出。</p>
-<p>这样我们这个Skip-Gram的例子里，我们的输入是特定词， 输出是softmax概率排前8的8个词，对应的Skip-Gram神经网络模型输入层有1个神经元，输出层有词汇表大小个神经元。隐藏层的神经元个数我们可以自己指定。通过DNN的反向传播算法，我们可以求出DNN模型的参数，同时得到所有的词对应的词向量。这样当我们有新的需求，要求出某1个词对应的最可能的8个上下文词时，我们可以通过一次DNN前向传播算法得到概率大小排前8的softmax概率对应的神经元所对应的词即可。</p>
-<p>以上就是神经网络语言模型中如何用CBOW与Skip-Gram来训练模型与得到词向量的大概过程。但是这和word2vec中用CBOW与Skip-Gram来训练模型与得到词向量的过程有很多的不同。</p>
-<p>**DNN模型的这个处理过程非常耗时。我们的词汇表一般在百万级别以上，这意味着我们DNN的输出层需要进行softmax计算各个词的输出概率的的计算量很大，因此word2vec并没有采用神经网络模型。有没有简化一点点的方法呢？<br>
-**</p>
-<p><strong>3.word2vec基础之霍夫曼树</strong></p>
-<p>word2vec也使用了CBOW与Skip-Gram来训练模型与得到词向量，但是并没有使用传统的DNN模型。最先优化使用的数据结构是用霍夫曼树来代替隐藏层和输出层的神经元，霍夫曼树的叶子节点起到输出层神经元的作用，叶子节点的个数即为词汇表的小大。 而内部节点则起到隐藏层神经元的作用。</p>
-<p><a href="https://www.cnblogs.com/pinard/p/7160330.html">霍夫曼树</a></p>
-<p>那么霍夫曼树有什么好处呢？一般得到霍夫曼树后我们会对叶子节点进行霍夫曼编码，由于权重高的叶子节点越靠近根节点，而权重低的叶子节点会远离根节点，这样我们的高权重节点编码值较短，而低权重值编码值较长。这保证的树的带权路径最短</p>
-<p><strong>4.基于Hierarchical Softmax</strong></p>
-<figure data-type="image" tabindex="4"><img src="https://Sunxiaonan0672.github.io/post-images/1568876484270.png" alt="" loading="lazy"></figure>
-<p>对于CBOW 和Skip-gram两个模型，word2vec给出了两个框架，分别基于Hierarchical Softmax 和Negative Sampling</p>
-<p>本节介绍基于Hierarchical Softmax的CBOW 和Skip-gram的模型</p>
-<figure data-type="image" tabindex="5"><img src="https://Sunxiaonan0672.github.io/post-images/1568944301012.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="6"><img src="https://Sunxiaonan0672.github.io/post-images/1568944411497.png" alt="" loading="lazy"></figure>
-<p>CBOW 模型的优化目标函数：</p>
-<figure data-type="image" tabindex="7"><img src="https://Sunxiaonan0672.github.io/post-images/1568876979618.png" alt="" loading="lazy"></figure>
-<p>Skip-gram模型的优化的目标函数：</p>
-<figure data-type="image" tabindex="8"><img src="https://Sunxiaonan0672.github.io/post-images/1568877047258.png" alt="" loading="lazy"></figure>
-<p>4.1 CBOW 模型</p>
-<p>4.1.1 网络结构</p>
-<figure data-type="image" tabindex="9"><img src="https://Sunxiaonan0672.github.io/post-images/1568902240357.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="10"><img src="https://Sunxiaonan0672.github.io/post-images/1568902461847.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="11"><img src="https://Sunxiaonan0672.github.io/post-images/1568902539402.png" alt="" loading="lazy"></figure>
-<p>4.1.2 梯度计算</p>
-<figure data-type="image" tabindex="12"><img src="https://Sunxiaonan0672.github.io/post-images/1568902867228.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="13"><img src="https://Sunxiaonan0672.github.io/post-images/1568902913104.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="14"><img src="https://Sunxiaonan0672.github.io/post-images/1568903021858.png" alt="" loading="lazy"></figure>
-<p>被分为正类的概率</p>
-<figure data-type="image" tabindex="15"><img src="https://Sunxiaonan0672.github.io/post-images/1568903093841.png" alt="" loading="lazy"></figure>
-<p>被分为负类的概率</p>
-<figure data-type="image" tabindex="16"><img src="https://Sunxiaonan0672.github.io/post-images/1568903159349.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="17"><img src="https://Sunxiaonan0672.github.io/post-images/1568903263049.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="18"><img src="https://Sunxiaonan0672.github.io/post-images/1568903328172.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="19"><img src="https://Sunxiaonan0672.github.io/post-images/1568903398727.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="20"><img src="https://Sunxiaonan0672.github.io/post-images/1568903457598.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="21"><img src="https://Sunxiaonan0672.github.io/post-images/1568903515838.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="22"><img src="https://Sunxiaonan0672.github.io/post-images/1568903611813.png" alt="" loading="lazy"></figure>
-<p>4.2 skip-gram模型</p>
-<p>4.2.1 网络结构</p>
-<figure data-type="image" tabindex="23"><img src="https://Sunxiaonan0672.github.io/post-images/1568903707010.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="24"><img src="https://Sunxiaonan0672.github.io/post-images/1568903743785.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="25"><img src="https://Sunxiaonan0672.github.io/post-images/1568903781886.png" alt="" loading="lazy"></figure>
-<p>4.2.2 梯度计算</p>
-<figure data-type="image" tabindex="26"><img src="https://Sunxiaonan0672.github.io/post-images/1568904427956.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="27"><img src="https://Sunxiaonan0672.github.io/post-images/1568904484323.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="28"><img src="https://Sunxiaonan0672.github.io/post-images/1568904535801.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="29"><img src="https://Sunxiaonan0672.github.io/post-images/1568904572677.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="30"><img src="https://Sunxiaonan0672.github.io/post-images/1568904617117.png" alt="" loading="lazy"></figure>
-<p>4.3 基于Negative Sampling 的模型</p>
-<p>Negative Sampling  是Tomas Mikolov 等人在2013年在“Distributed Representation of words and Phrases and their Compositionality”一文中提出，主要目的是提高训练速度并改善所得词向量的质量，与Hierarchical Softmax 相比，不再使用哈夫曼树，而是利用随机的负采样技术。</p>
-<p>5 小编寄语</p>
-<p>作为处女座的小编，总是希望始末完整，因此本节主要介绍word2vec一部分，由于小编没有写完Negative Sampling 的模型，下次继续更新，然后借鉴小组大佬们的笔记，陆续分享elmo，bert 以及xlnet💪</p>
-<p><strong>引用</strong></p>
-<p>1.<a href="https://www.cnblogs.com/peghoty/p/3857839.html">word2vec 数学原理</a></p>
-<p>2.<a href="https://www.cnblogs.com/pinard/p/7243513.html">word2vec原理</a></p>
-]]></content>
-    </entry>
-</feed>
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '8eff303ed9bcf9f4ab84',
+        clientSecret: 'f7db90d0f1726df30e9d7a67e8c9d39af5c2f9bc',
+        repo: 'Sunxiaonan0672.github.io',
+        owner: 'Sunxiaonan0672',
+        admin: ['Sunxiaonan0672'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
