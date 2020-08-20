@@ -7,7 +7,7 @@
 <meta name="description" content="经验是智慧之父，记忆是智慧之母">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1595553029086">
+<link rel="shortcut icon" href="https://Sunxiaonan0672.github.io/favicon.ico?v=1597930611910">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -123,7 +123,7 @@
 <strong>3.损失函数</strong><br>
 使用均方误差作为损失函数，使用均方误差最小化目标函数的方法称为最小二乘法<br>
 损失函数：<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">J(\theta)=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mi>m</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>m</mi></msubsup><mo>(</mo><msubsup><mi>f</mi><mi>θ</mi><mi>i</mi></msubsup><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><msup><mi>y</mi><mi>i</mi></msup><msup><mo>)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sum_{i=0}^m (f_\theta^i(x)-y^i)^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.124374em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4168920000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831079999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0746639999999998em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">J(\theta)=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mi>m</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>m</mi></msubsup><mo>(</mo><msubsup><mi>f</mi><mi>θ</mi><mi>i</mi></msubsup><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><msup><mi>y</mi><mi>i</mi></msup><msup><mo>)</mo><mn>2</mn></msup><mo>≤</mo></mrow><annotation encoding="application/x-tex">\sum_{i=0}^m (f_\theta^i(x)-y^i)^2\leq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.124374em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4168920000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831079999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0746639999999998em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span></span></span></span></p>
 <p>均方误差解释<br>
 <strong>中心极限定理</strong><br>
 实际问题中的很多随机现象可以看作众多因素的对立影响的综合反应，往往服从正态分布<br>
@@ -143,6 +143,12 @@
 梯度下降更新</p>
 <p><img src="https://Sunxiaonan0672.github.io/post-images/1595505326164.jpeg" alt="" loading="lazy">![]</p>
 <figure data-type="image" tabindex="2"><img src="https://Sunxiaonan0672.github.io/post-images/1595505405794.jpeg" alt="" loading="lazy"></figure>
+<p>作业：<br>
+1.解释线性回归为什么使用均方误差和作为目标函数的原因<br>
+1）均方误差有非常好的几何意义，它对应了常用的欧几里得距离。<br>
+2）根据中心极限定理，高斯分布结合最大似然估计可推导<br>
+2.BGD和SGD的区别<br>
+1）</p>
 <p><strong>总结</strong><br>
 本节主要讲述机器学习系列最基础的线性回归模型，由于时间紧张，增加笔记贴图，影响美观。</p>
 
@@ -176,7 +182,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1595553029086" class="no-responsive avatar">
+    <img src="https://Sunxiaonan0672.github.io/images/avatar.png?v=1597930611910" class="no-responsive avatar">
     <div class="text-muted">经验是智慧之父，记忆是智慧之母</div>
     <div class="social-container">
       
@@ -198,6 +204,12 @@
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://Sunxiaonan0672.github.io/post/hui-gui-ping-gu/">回归评估</a>
+            </li>
+          
         
           
             <li>
@@ -254,10 +266,6 @@
           
         
           
-            <li>
-              <a href="https://Sunxiaonan0672.github.io/post/word2vec-hierarchical-softmax/">word2vec- Hierarchical Softmax</a>
-            </li>
-          
         
           
         
@@ -284,15 +292,15 @@
     </div>
     <div class="row">
       
-        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/IwRrglD_0/" class="badge success">
           深度学习
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge ">
+        <a href="https://Sunxiaonan0672.github.io/tag/xY4B89Egk/" class="badge warning">
           paper
         </a>
       
-        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge success">
+        <a href="https://Sunxiaonan0672.github.io/tag/gridea/" class="badge ">
           Gridea
         </a>
       
